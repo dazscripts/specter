@@ -8,9 +8,31 @@ local Ghost = Tabs.Visuals:AddToggle("Ghost", {Title = "Ghost ESP", Default = fa
 
 local PlayersT = Tabs.Visuals:AddToggle("Players", {Title = "Players ESP", Default = false })
 
-
 local Closets = Tabs.Visuals:AddToggle("Closets", {Title = "Closets ESP", Default = false })
 
 local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
 
 local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
+
+
+Items:OnChanged(function()
+    if Options.Items.Value == false then
+        for i,v in pairs(workspace.Equipment:GetChildren()) do
+            if not v.Main:FindFirstChild("Highlight") then
+                local h = Instance.new("Highlight")
+                h.Name = 'Highlight'
+                h.Adornee = v
+                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                h.Parent = v.Area
+                h.FillColor = Color3.new(1,1,1)
+            end
+        end
+    else
+        for i,v in pairs(workspace.Equipment:GetChildren()) do
+            if v.Main:FindFirstChild("Highlight") then
+                v.Main:FindFirstChild("Highlight"):Destroy()
+            end
+        end
+    end
+
+end)
