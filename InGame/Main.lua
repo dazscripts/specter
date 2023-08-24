@@ -2,8 +2,7 @@ function rgbToColor3(r, g, b)
     return Color3.new(r/255, g/255, b/255)
 end
 
-
-local Window = Fluent:CreateWindow({
+Window = Fluent:CreateWindow({
     Title = 'Specter GUI 1.0.4',
     SubTitle = "| InGame",
     TabWidth = 120,
