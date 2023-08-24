@@ -8,6 +8,35 @@ local freezing = Tabs.Evidence:AddToggle("Freezing", {Title = "Auto Detect Freez
 
 local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Writing", Default = false })
 
+local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
+
+workspace.Orbs.ChildAdded:Connect(function()
+    if Options.Orbs.Value then
+        if Options.auto.Value then
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "Orbs have been detected!",
+                SubContent = "Evidence is being entered in the Journal.", -- Optional
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            if not game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box.Selected.Visible then
+                for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box.Activated) do
+                    v:Fire()
+                end
+            end
+        else
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "Orbs have been detected!",
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+        end
+
+    end
+end)
+
+
+
 Tabs.Evidence:AddSection("Objectives")
 local a = workspace.Van.Objectives.SurfaceGui.Frame.Objectives
 
