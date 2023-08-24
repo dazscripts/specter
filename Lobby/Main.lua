@@ -1,7 +1,9 @@
+print("pls no error")
+
 local library = require(rep:WaitForChild("Library"))
 
 local Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0 |',
+    Title = 'Specter GUI 1.0.1 |',
     SubTitle = "Lobby",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -33,36 +35,10 @@ do
         Content = "Since you are in the lobby none of the ingame features will appear."
     })
 
-
-
-    Tabs.Main:AddButton({
-        Title = "Button",
-        Description = "Very important button",
-        Callback = function()
-            Window:Dialog({
-                Title = "Title",
-                Content = "This is a dialog",
-                Buttons = {
-                    {
-                        Title = "Confirm",
-                        Callback = function()
-                            print("Confirmed the dialog.")
-                        end
-                    },
-                    {
-                        Title = "Cancel",
-                        Callback = function()
-                            print("Cancelled the dialog.")
-                        end
-                    }
-                }
-            })
-        end
-    })
-
     local Invite = Tabs.Main:AddToggle("Invite", {Title = "Spam Invite Players", Default = false })
 
     Invite:OnChanged(function()
+        if Options.Invite.Value == false then return end
         repeat
             pcall(function()
                 for _,v in pairs(Players:GetChildren()) do
@@ -76,28 +52,6 @@ do
     end)
 
     --Options.Invite:SetValue(false)
-
-
-    
-    local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Slider",
-        Description = "This is a slider",
-        Default = 2,
-        Min = 0,
-        Max = 5,
-        Rounding = 1,
-        Callback = function(Value)
-            print("Slider was changed:", Value)
-        end
-    })
-
-    Slider:OnChanged(function(Value)
-        print("Slider changed:", Value)
-    end)
-
-    Slider:SetValue(3)
-
-
 
     local Dropdown = Tabs.Main:AddDropdown("Case", {
         Title = "Select Case To Auto Buy",
@@ -130,12 +84,6 @@ do
             task.wait(1)
         until Options.BuyCases.Value == false
     end)
-
-    Dropdown:OnChanged(function(Value)
-        print("Dropdown changed:", Value)
-    end)
-
-
     
     local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
         Title = "Dropdown",
