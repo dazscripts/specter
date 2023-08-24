@@ -8,10 +8,15 @@ local function PutEvidence(evidence)
         end
     end
 end
+local emf = Tabs.Evidence:AddToggle("EMF 5", {Title = "Auto Detect Ghost EMF 5", Default = false })
+
+local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
 local orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", Default = false })
 
 local fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
+
+local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
 Tabs.Evidence:AddButton({
     Title = "Detect Freezing Temperatures",
@@ -24,7 +29,7 @@ Tabs.Evidence:AddButton({
             plr.Character:SetPrimaryPartCFrame(Origin)
 
             Window:Dialog({
-                Title = "Freezing Temperature Results",
+                Title = "Temperature Results",
                 Content = "Freezing Temperature was found! Would you like to enter it into the journal?",
                 Buttons = {
                     {
@@ -54,7 +59,6 @@ Tabs.Evidence:AddButton({
         end
     end
 })
-local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
 writing:OnChanged(function()
     repeat task.wait() until workspace.Equipment:FindFirstChild("Book")
@@ -83,7 +87,6 @@ writing:OnChanged(function()
     end
 end)
 
-local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
 orbs:OnChanged(function()
     if not Options.Orbs.Value then return end
