@@ -21,6 +21,9 @@ Tabs = {
 
 Options = Fluent.Options
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Player.lua"))()
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Evidence.lua"))()
 
 Tabs.Visuals:AddSection("World")
