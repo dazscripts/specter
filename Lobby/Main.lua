@@ -110,7 +110,7 @@ do
 
     CaseToggle:OnChanged(function()
         repeat
-            local results = game:GetService("ReplicatedStorage").Events.PurchaseCase:InvokeServer(Options.Case.Value)
+            local results = game:GetService("ReplicatedStorage").Events.PurchaseCase:InvokeServer(Dropdown.Value)
             if results.Success == true then
                 Fluent:Notify({
                     Title = "Winnings",
@@ -129,7 +129,7 @@ do
             task.wait(1)
         until Options.BuyCases.Value == false
     end)
-    
+
     Dropdown:OnChanged(function(Value)
         print("Dropdown changed:", Value)
     end)
