@@ -61,13 +61,15 @@ Tabs.Evidence:AddButton({
 })
 
 writing:OnChanged(function()
-    repeat task.wait() until workspace.Equipment:FindFirstChild("Book")
+    if not Options.Writing.Value then return end
+    repeat task.wait() until workspace.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
+    if not Options.Writing.Value then return end
     Fluent:Notify({
         Title = "Evidence",
         Content = "Found Book.. Waiting for writing.",
         Duration = 5 -- Set to nil to make the notification not disappear
     })
-    repeat task.wait() until workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not workspace.Equipment:FindFirstChild("Book")
+    repeat task.wait() until workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not workspace.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
     if workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") then
         if Options.auto.Value then
             Fluent:Notify({
