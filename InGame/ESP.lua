@@ -93,7 +93,7 @@ Closets:OnChanged(function()
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                 h.FillColor = rgbToColor3(79, 255, 69)
                 h.Parent = v.Area
-                h.FillTransparency = 0.4
+                h.FillTransparency = 0.5
                 h.OutlineTransparency = 1
             end
         end

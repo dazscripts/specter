@@ -4,7 +4,7 @@ end
 
 
 local Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.2',
+    Title = 'Specter GUI 1.0.3',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
@@ -15,11 +15,14 @@ local Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Evidence = Window:AddTab({ Title = "Main", Icon = "book" }),
     Visuals = Window:AddTab({ Title = "Visuals", Icon = "pencil" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
 Options = Fluent.Options
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/https:/dazscripts/specter/GUI/InGame/Evidence.lua"))()
 
 
 Fluent:Notify({
