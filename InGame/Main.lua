@@ -1,6 +1,6 @@
 
 local Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.1',
+    Title = 'Specter GUI 1.0.2',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
