@@ -19,8 +19,9 @@ local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Writing
 
 local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
-workspace.Orbs.ChildAdded:Connect(function()
-    if Options.Orbs.Value then
+orbs:OnChanged(function()
+    if not Options.Orbs.Value then return end
+    repeat if #workspace.Orbs:GetChildren() >= 1 then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",
@@ -37,11 +38,15 @@ workspace.Orbs.ChildAdded:Connect(function()
             })
         end
 
+        Options.Orbs:SetValue(false)
     end
+    task.wait(0.5)
+    until not Options.Orbs.Value
 end)
 
-workspace.Fingerprints.ChildAdded:Connect(function()
-    if Options.Fingerprints.Value then
+fp:OnChanged(function()
+    if not Options.Fingerprints.Value then return end
+    repeat if #workspace.Fingerprints:GetChildren() >= 1 then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",
@@ -57,7 +62,10 @@ workspace.Fingerprints.ChildAdded:Connect(function()
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
         end
+        Options.Fingerprints:SetValue(false)
     end
+    task.wait(0.5)
+    until not Options.Orbs.Value
 end)
 
 Tabs.Evidence:AddSection("Objectives")
