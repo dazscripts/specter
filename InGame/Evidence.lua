@@ -13,5 +13,5 @@ local a = workspace.Van.Objectives.SurfaceGui.Frame.Objectives
 
 Tabs.Evidence:AddParagraph({
     Title = "Objectives",
-    Content = "1: " .. a.Identify.Text .. '\n' .. '2: ' .. a['1'].Text .. '\n' .. '3: ' .. a['2'].Text .. '\n' .. '4: ' .. a['3'].Text
+    Content = a.Identify.Text .. '\n' .. a['1'].Text .. '\n' .. a['2'].Text .. '\n' .. a['3'].Text
 })
