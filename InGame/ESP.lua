@@ -56,7 +56,7 @@ end)
 PlayersT:OnChanged(function()
     if Options.Players.Value == true then
         repeat for i,v in pairs(Players:GetChildren()) do
-              if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+              if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
                 h.Adornee = v
@@ -68,8 +68,8 @@ PlayersT:OnChanged(function()
         until Options.Players.Value == false then
     else
         for i,v in pairs(Players:GetChildren()) do
-            if v.HumanoidRootPart:FindFirstChild("Highlight") then
-                v.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+            if v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
+                v.Character.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
             end
         end
     end
