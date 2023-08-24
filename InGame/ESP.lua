@@ -59,9 +59,9 @@ PlayersT:OnChanged(function()
               if not v.HumanoidRootPart:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
-                h.Adornee = workspace.Ghost
+                h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.Parent = workspace.Ghost.HumanoidRootPart
+                h.Parent = v.HumanoidRootPart
                 h.FillColor = Color3.new(0,0,1)
               end
         end
