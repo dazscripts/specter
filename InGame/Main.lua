@@ -13,7 +13,7 @@ Window = Fluent:CreateWindow({
 })
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
-    Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Evidence = Window:AddTab({ Title = "Evidence", Icon = "book" }),
     Visuals = Window:AddTab({ Title = "Visuals", Icon = "pencil" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
@@ -22,14 +22,6 @@ Tabs = {
 Options = Fluent.Options
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Evidence.lua"))()
-
-
-Fluent:Notify({
-    Title = "NOTICE",
-    Content = "Script has loaded",
-    SubContent = "Thank you for using Specter GUI", -- Optional
-    Duration = 5 -- Set to nil to make the notification not disappear
-})
 
 Tabs.Visuals:AddSection("World")
 
@@ -80,7 +72,6 @@ InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
 -- (we dont want configs to save themes, do we?)
-SaveManager:IgnoreThemeSettings()
 
 -- You can add indexes of elements the save manager should ignore
 SaveManager:SetIgnoreIndexes({})
@@ -98,9 +89,10 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 Window:SelectTab(1)
 
 Fluent:Notify({
-    Title = "Fluent",
-    Content = "The script has been loaded.",
-    Duration = 8
+    Title = "NOTICE",
+    Content = "Script has loaded",
+    SubContent = "Thank you for using Specter GUI", -- Optional
+    Duration = 5 -- Set to nil to make the notification not disappear
 })
 
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
