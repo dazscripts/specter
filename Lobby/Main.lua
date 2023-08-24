@@ -129,9 +129,7 @@ do
             task.wait(1)
         until Options.BuyCases.Value == false
     end)
-
-    Dropdown:SetValue("four")
-
+    
     Dropdown:OnChanged(function(Value)
         print("Dropdown changed:", Value)
     end)
