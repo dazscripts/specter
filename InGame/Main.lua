@@ -21,6 +21,7 @@ Tabs = {
 }
 
 Options = Fluent.Options
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/World.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Player.lua"))()
 
