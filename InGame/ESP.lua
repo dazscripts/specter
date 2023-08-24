@@ -30,7 +30,6 @@ Items:OnChanged(function()
             end
             task.wait(0.5)
         until Options.Items.Value == false
-
     else
         for i,v in pairs(workspace.Equipment:GetChildren()) do
             if v.Main:FindFirstChild("Highlight") then
@@ -38,5 +37,19 @@ Items:OnChanged(function()
             end
         end
     end
+end)
 
+Ghost:OnChanged(function()
+    if Options.Items.Value == true then
+        local h = Instance.new("Highlight")
+        h.Name = 'Highlight'
+        h.Adornee = workspace.Ghost
+        h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        h.Parent = workspace.Ghost.HumanoidRootPart
+        h.FillColor = Color3.new(1,0,0)
+    else
+        if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
+            workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+        end
+    end
 end)

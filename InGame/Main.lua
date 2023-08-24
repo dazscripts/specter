@@ -8,7 +8,6 @@ local Window = Fluent:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
-
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
@@ -217,6 +216,30 @@ do
         repeat task.wait(0.1) game.Lighting.Ambient = Color3.new(0.8,0.8,0.8) until Options.FullBright.Value == false
         game.Lighting.Ambient = Color3.new(0,0,0)
     end)
+    local Doors = Tabs.Main:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
+    Doors:OnChanged(function()
+        if Options.Doors.Value == true then
+            Instance.new("Folder",game.ReplicatedStorage).Name = 'Doors'
+
+            for i,v in pairs(workspace.Map.Doors:GetChildren()) do
+                if not v:GetAttribute("Closet") then
+                    v.Parent = game.ReplicatedStorage.Doors
+                end
+            end
+        else
+            if game.ReplicatedStorage:FindFirstChild("Doors") then
+                for i,v in pairs(game.ReplicatedStorage.Doors:GetChildren()) do
+                    v.Parent = workspace.Map.Doors
+                end
+
+                game.ReplicatedStorage.Doors:Destroy()
+            end
+
+        end
+    end)
+    
+
+
     loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/ESP.lua"))()
 end
 
