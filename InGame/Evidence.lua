@@ -8,7 +8,7 @@ local function PutEvidence(evidence)
         end
     end
 end
-local emf = Tabs.Evidence:AddToggle("EMF 5", {Title = "Auto Detect Ghost EMF 5", Default = false })
+local emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect Ghost EMF 5", Default = false })
 
 local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
@@ -60,6 +60,30 @@ Tabs.Evidence:AddButton({
     end
 })
 
+emf:OnChanged(function()
+    if not Options.EMF.Value then return end
+    repeat if workspace:FindFirstChild("emfpart5") then
+        if Options.auto.Value then
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "EMF 5 has been detected!",
+                SubContent = "Evidence is being entered in the Journal.", -- Optional
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            PutEvidence("Writing")
+            Options.EMF:SetValue(false)
+
+        else
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "EMF 5 has been detected!",
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            Options.EMF:SetValue(false)
+        end
+    end task.wait() until not Options.EMF.Value
+end)
+
 writing:OnChanged(function()
     if not Options.Writing.Value then return end
     repeat task.wait() until workspace.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
@@ -79,13 +103,22 @@ writing:OnChanged(function()
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
             PutEvidence("Writing")
+            Options.Writing:SetValue(false)
         else
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Ghost Writing has been detected!",
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
+            Options.Writing:SetValue(false)
         end
+    elseif not workspace.Equipment:FindFirstChild("Book") then
+        Fluent:Notify({
+            Title = "ERROR",
+            Content = "Couldnt find Book",
+            Duration = 5 -- Set to nil to make the notification not disappear
+        })
+        Options.Writing:SetValue(false)
     end
 end)
 
