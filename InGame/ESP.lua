@@ -24,7 +24,9 @@ Items:OnChanged(function()
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                     h.Parent = v.Main
-                    h.FillColor = Color3.new(1,1,1)
+                    h.FillColor = rgbToColor3(9, 3, 255)
+                    h.FillTransparency = 0.7
+                    h.OutlineTransparency = 0.5
                 end
             end
             task.wait(0.5)
@@ -46,6 +48,8 @@ Ghost:OnChanged(function()
         h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         h.Parent = workspace.Ghost.HumanoidRootPart
         h.FillColor = Color3.new(1,0,0)
+        h.FillTransparency = 0.7
+        h.OutlineTransparency = 0.5
     else
         if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
             workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
@@ -54,7 +58,7 @@ Ghost:OnChanged(function()
 end)
 
 PlayersT:OnChanged(function()
-    if Options.PlayersT.Value == true then
+    if Options.Players.Value == true then
         repeat 
             for i,v in pairs(Players:GetChildren()) do
                 if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
@@ -62,8 +66,10 @@ PlayersT:OnChanged(function()
                     h.Name = 'Highlight'
                     h.Adornee = v.Character
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = Color3.new(0,0,1)
+                    h.FillColor = rgbToColor3(140, 255, 244)
                     h.Parent = v.Character.HumanoidRootPart
+                    h.FillTransparency = 0.7
+                    h.OutlineTransparency = 0.5
                 end
             end
         task.wait(5)
@@ -72,6 +78,29 @@ PlayersT:OnChanged(function()
         for i,v in pairs(Players:GetChildren()) do
             if v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
                 v.Character.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+            end
+        end
+    end
+end)
+
+Closets:OnChanged(function()
+    if Options.Closets.Value == true then
+        for i,v in pairs(workspace.Map.Closets:GetChildren()) do
+            if not v.Area:FindFirstChild("Highlight") then
+                local h = Instance.new("Highlight")
+                h.Name = 'Highlight'
+                h.Adornee = v
+                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                h.FillColor = rgbToColor3(79, 255, 69)
+                h.Parent = v.Area
+                h.FillTransparency = 0.7
+                h.OutlineTransparency = 0.5
+            end
+        end
+    else
+        for i,v in pairs(workspace.Map.Closets:GetChildren()) do
+            if v.Area:FindFirstChild("Highlight") then
+                v.Area:FindFirstChild("Highlight"):Destroy()
             end
         end
     end
