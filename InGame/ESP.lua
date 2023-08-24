@@ -54,17 +54,18 @@ Ghost:OnChanged(function()
 end)
 
 PlayersT:OnChanged(function()
-    if Options.Players.Value == true then
-        repeat for i,v in pairs(Players:GetChildren()) do
-              if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
-                local h = Instance.new("Highlight")
-                h.Name = 'Highlight'
-                h.Adornee = v.Character
-                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.Parent = v.Character.HumanoidRootPart
-                h.FillColor = Color3.new(0,0,1)
-              end
-        end
+    if Options.PlayersT.Value == true then
+        repeat 
+            for i,v in pairs(Players:GetChildren()) do
+                if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
+                    local h = Instance.new("Highlight")
+                    h.Name = 'Highlight'
+                    h.Adornee = v.Character
+                    h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    h.FillColor = Color3.new(0,0,1)
+                    h.Parent = v.Character.HumanoidRootPart
+                end
+            end
         task.wait(5)
         until Options.Players.Value == false then
     else
