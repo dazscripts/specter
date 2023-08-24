@@ -17,16 +17,20 @@ local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interact
 
 Items:OnChanged(function()
     if Options.Items.Value == true then
-        for i,v in pairs(workspace.Equipment:GetChildren()) do
-            if not v.Main:FindFirstChild("Highlight") then
-                local h = Instance.new("Highlight")
-                h.Name = 'Highlight'
-                h.Adornee = v
-                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.Parent = v.Main
-                h.FillColor = Color3.new(1,1,1)
+        repeat
+            for i,v in pairs(workspace.Equipment:GetChildren()) do
+                if not v.Main:FindFirstChild("Highlight") then
+                    local h = Instance.new("Highlight")
+                    h.Name = 'Highlight'
+                    h.Adornee = v
+                    h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    h.Parent = v.Main
+                    h.FillColor = Color3.new(1,1,1)
+                end
             end
-        end
+            task.wait(0.5)
+        until Options.Items.Value == false
+
     else
         for i,v in pairs(workspace.Equipment:GetChildren()) do
             if v.Main:FindFirstChild("Highlight") then

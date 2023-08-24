@@ -25,9 +25,6 @@ do
         SubContent = "Thank you for using Specter GUI", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
-    
-    Tabs.Visuals:AddSection("Other")
-
 
     Tabs.Main:AddParagraph({
         Title = "ALERT",
