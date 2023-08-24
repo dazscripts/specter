@@ -16,7 +16,7 @@ local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interact
 
 
 Items:OnChanged(function()
-    if Options.Items.Value == false then
+    if Options.Items.Value == true then
         for i,v in pairs(workspace.Equipment:GetChildren()) do
             if not v.Main:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
