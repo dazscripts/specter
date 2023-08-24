@@ -59,12 +59,13 @@ PlayersT:OnChanged(function()
               if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
-                h.Adornee = v
+                h.Adornee = v.Character
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.Parent = v.HumanoidRootPart
+                h.Parent = v.Character.HumanoidRootPart
                 h.FillColor = Color3.new(0,0,1)
               end
         end
+        task.wait(5)
         until Options.Players.Value == false then
     else
         for i,v in pairs(Players:GetChildren()) do
