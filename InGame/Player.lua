@@ -3,7 +3,7 @@ Tabs.Player:AddSection("Player Customizations")
 local third = Tabs.Player:AddToggle("third", {Title = "Enable Third Person", Default = false })
 third:OnChanged(function()
     if Options.third.Value then
-        plr.MaxCameraZoonDistance = 10000
+        plr.CameraMaxZoonDistance = 10000
         plr.CameraMode = 'Classic'
     else
         plr.CameraMode = 'LockFirstPerson'
@@ -45,7 +45,7 @@ Tabs.Player:AddSlider("WS", {
     Max = 70,
     Rounding = 1,
     Callback = function(Value)
-        plr.Character.Humanoid.Walkspeed = Value
+        plr.Character.Humanoid.WalkSpeed = Value
     end
 })
 
