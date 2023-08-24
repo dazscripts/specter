@@ -216,7 +216,7 @@ do
         repeat task.wait(0.1) game.Lighting.Ambient = Color3.new(0.8,0.8,0.8) until Options.FullBright.Value == false
         game.Lighting.Ambient = Color3.new(0,0,0)
     end)
-    local Doors = Tabs.Main:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
+    local Doors = Tabs.Visuals:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
     Doors:OnChanged(function()
         if Options.Doors.Value == true then
             Instance.new("Folder",game.ReplicatedStorage).Name = 'Doors'
