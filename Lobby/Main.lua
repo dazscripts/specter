@@ -71,6 +71,7 @@ do
                     end)
                 end    
             end)
+            task.wait()
         until Options.Invite.Value == false
     end)
 
