@@ -13,9 +13,48 @@ local orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", 
 
 local fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
 
-local freezing = Tabs.Evidence:AddToggle("Freezing", {Title = "Auto Detect Freezing Temperatures", Default = false })
+Tabs.Evidence:AddButton({
+    Title = "Detect Freezing Temperatures",
+    Description = "MUST START GAME TO PREVENT BREAKING",
+    Callback = function()
+        local Origin = plr.Character.PrimaryPart.CFrame
+        plr.Character:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)
+        task.wait(0.2)
+        if plr.Character.Head.BreathAttachment.Enabled == true then
+            plr.Character:SetPrimaryPartCFrame(Origin)
 
-local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Writing", Default = false })
+            Window:Dialog({
+                Title = "Freezing Temperature Results",
+                Content = "Freezing Temperature was found! Would you like to enter it into the journal?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            PutEvidence("Freezing Temperature")
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()end
+                    },
+                }
+            })
+        else
+            plr.Character:SetPrimaryPartCFrame(Origin)
+            Window:Dialog({
+                Title = "Freezing Temperature Results",
+                Content = "Freezing Temperature was found not found.",
+                Buttons = {
+                    {
+                        Title = "Okay",
+                        Callback = function()end
+                    },
+                }
+            })
+        end
+    end
+})
+local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
 local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
@@ -65,7 +104,7 @@ fp:OnChanged(function()
         Options.Fingerprints:SetValue(false)
     end
     task.wait(0.5)
-    until not Options.Orbs.Value
+    until not Options.Fingerprints.Value
 end)
 
 Tabs.Evidence:AddSection("Objectives")
