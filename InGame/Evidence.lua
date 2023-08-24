@@ -47,7 +47,7 @@ Tabs.Evidence:AddButton({
         else
             plr.Character:SetPrimaryPartCFrame(Origin)
             Window:Dialog({
-                Title = "Freezing Temperature Results",
+                Title = "Temperature Results",
                 Content = "Freezing Temperature was not found.",
                 Buttons = {
                     {
