@@ -14,7 +14,6 @@ local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = fa
 
 local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
 
-
 Items:OnChanged(function()
     if Options.Items.Value == true then
         repeat
@@ -50,6 +49,28 @@ Ghost:OnChanged(function()
     else
         if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
             workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+        end
+    end
+end)
+
+PlayersT:OnChanged(function()
+    if Options.Players.Value == true then
+        repeat for i,v in pairs(Players:GetChildren()) do
+              if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                local h = Instance.new("Highlight")
+                h.Name = 'Highlight'
+                h.Adornee = workspace.Ghost
+                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                h.Parent = workspace.Ghost.HumanoidRootPart
+                h.FillColor = Color3.new(0,0,1)
+              end
+        end
+        until Options.Players.Value == false then
+    else
+        for i,v in pairs(Players:GetChildren()) do
+            if v.HumanoidRootPart:FindFirstChild("Highlight") then
+                v.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+            end
         end
     end
 end)
