@@ -1,7 +1,5 @@
 local library = require(rep:WaitForChild("Library"))
 
-
-
 local Window = Fluent:CreateWindow({
     Title = 'Specter GUI',
     SubTitle = "Lobby",
@@ -62,8 +60,6 @@ do
         end
     })
 
-
-
     local Invite = Tabs.Main:AddToggle("Invite", {Title = "Spam Invite Players", Default = false })
 
     Invite:OnChanged(function()
@@ -71,14 +67,14 @@ do
             pcall(function()
                 for _,v in pairs(Players:GetChildren()) do
                     task.spawn(function()
-                        events:FindFirstChild("InvitePlayer"):InvokeServer(plyrs:FindFirstChild(v.Name))
+                        events:FindFirstChild("InvitePlayer"):InvokeServer(Players:FindFirstChild(v.Name))
                     end)
                 end    
             end)
         until Options.Invite.Value == false
     end)
 
-    Options.MyToggle:SetValue(false)
+    Options.Invite:SetValue(false)
 
 
     
