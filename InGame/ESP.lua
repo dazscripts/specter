@@ -73,7 +73,7 @@ PlayersT:OnChanged(function()
                 end
             end
         task.wait(5)
-        until Options.Players.Value == false then
+        until Options.Players.Value == false
     else
         for i,v in pairs(Players:GetChildren()) do
             if v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
