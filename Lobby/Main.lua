@@ -107,14 +107,15 @@ do
     })
 
     local CaseToggle = Tabs.Main:AddToggle("BuyCases", {Title = "Auto Buy Case", Default = false})
-
+    
     CaseToggle:OnChanged(function()
+		if Options.BuyCases.Value == false then return end
         repeat
             local results = game:GetService("ReplicatedStorage").Events.PurchaseCase:InvokeServer(Dropdown.Value)
             if results.Success == true then
                 Fluent:Notify({
                     Title = "Winnings",
-                    Content = "you won:" .. results.WinningItem.Skin .. results.WinningItem.Equipment",
+                    Content = "you won:" .. results.WinningItem.Skin .. results.WinningItem.Equipment,
                     SubContent = "Rarity: ".. results.WinningItem.Rarity, -- Optional
                     Duration = 3 -- Set to nil to make the notification not disappear
                 })
