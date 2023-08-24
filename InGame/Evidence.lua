@@ -2,7 +2,7 @@ Tabs.Evidence:AddSection("Detect Evidence")
 
 local function PutEvidence(evidence)
     local gui = plr.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes[evidence].Box
-    if if not gui:FindFirstChild("Selected").Visible then
+    if not gui:FindFirstChild("Selected").Visible then
         for i,v in pairs(getconnections(gui.Activated)) do
             v:Fire()
         end
