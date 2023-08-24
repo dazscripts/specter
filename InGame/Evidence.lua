@@ -20,7 +20,7 @@ Tabs.Evidence:AddButton({
         local Origin = plr.Character.PrimaryPart.CFrame
         plr.Character:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)
         task.wait(0.2)
-        if plr.Character.Head.BreathAttachment.Enabled == true then
+        if plr.Character.Head.BreathAttachment.Breath.Enabled == true then
             plr.Character:SetPrimaryPartCFrame(Origin)
 
             Window:Dialog({
