@@ -35,8 +35,8 @@ local FullBright = Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", D
 
 FullBright:OnChanged(function()
     if Options.FullBright.Value == false then return end
-    repeat task.wait(0.1) game.Lighting.Ambient = Color3.new(0.8,0.8,0.8) until Options.FullBright.Value == false
-    game.Lighting.Ambient = Color3.new(0,0,0)
+    repeat task.wait(0.1) game.Lighting.ExposureCompensation = 3 until Options.FullBright.Value == false
+    game.Lighting.ExposureCompensation = -1
 end)
 
 local Doors = Tabs.Visuals:AddToggle("Doors", {Title = "Remove All Doors", Default = false})

@@ -24,9 +24,9 @@ Items:OnChanged(function()
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                     h.Parent = v.Main
-                    h.FillColor = rgbToColor3(9, 3, 255)
-                    h.FillTransparency = 0.7
-                    h.OutlineTransparency = 0.5
+                    h.FillColor = rgbToColor3(0, 225, 255)
+                    h.FillTransparency = 0.4
+                    h.OutlineTransparency = 0
                 end
             end
             task.wait(0.5)
@@ -93,8 +93,8 @@ Closets:OnChanged(function()
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                 h.FillColor = rgbToColor3(79, 255, 69)
                 h.Parent = v.Area
-                h.FillTransparency = 0.7
-                h.OutlineTransparency = 0.5
+                h.FillTransparency = 0.4
+                h.OutlineTransparency = 1
             end
         end
     else
