@@ -56,6 +56,33 @@ Tabs.Evidence:AddButton({
 })
 local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
+writing:OnChanged(function()
+    repeat task.wait() until workspace.Equipment:FindFirstChild("Book")
+    Fluent:Notify({
+        Title = "Evidence",
+        Content = "Found Book.. Waiting for writing.",
+        Duration = 5 -- Set to nil to make the notification not disappear
+    })
+    repeat task.wait() until workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not workspace.Equipment:FindFirstChild("Book")
+    if workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") then
+        if Options.auto.Value then
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "Ghost Writing has been detected!",
+                SubContent = "Evidence is being entered in the Journal.", -- Optional
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            PutEvidence("Writing")
+        else
+            Fluent:Notify({
+                Title = "Evidence",
+                Content = "Ghost Writing has been detected!",
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+        end
+    end
+end)
+
 local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
 orbs:OnChanged(function()
