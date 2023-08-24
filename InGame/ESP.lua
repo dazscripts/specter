@@ -23,7 +23,7 @@ Items:OnChanged(function()
                 h.Name = 'Highlight'
                 h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.Parent = v.Area
+                h.Parent = v.Main
                 h.FillColor = Color3.new(1,1,1)
             end
         end
