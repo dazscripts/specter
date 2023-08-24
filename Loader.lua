@@ -24,7 +24,7 @@ local LobbyId = 8267733039
 local GameId = 8417221956
 
 if game.PlaceId == LobbyId then
-    loadstring(game:HttpGet('https://github.com/dazscripts/specter/GUI/Lobby/Main.lua'))()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/dazscripts/specter/GUI/Lobby/Main.lua'))()
 elseif game.PlaceId == GameId then
 
 end
