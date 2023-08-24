@@ -19,8 +19,8 @@ workspace.Orbs.ChildAdded:Connect(function()
                 SubContent = "Evidence is being entered in the Journal.", -- Optional
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
-            if not game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box.Selected.Visible then
-                for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box.Activated) do
+            if game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box:FindFirstChild("Selected").Visible == false then
+                for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes.Orbs.Box.Activated)) do
                     v:Fire()
                 end
             end
