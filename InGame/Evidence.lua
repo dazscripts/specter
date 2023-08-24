@@ -8,7 +8,7 @@ local function PutEvidence(evidence)
         end
     end
 end
-local emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect Ghost EMF 5", Default = false })
+local emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect EMF 5", Default = false })
 
 local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 
