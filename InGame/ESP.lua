@@ -40,7 +40,7 @@ Items:OnChanged(function()
 end)
 
 Ghost:OnChanged(function()
-    if Options.Items.Value == true then
+    if Options.Ghost.Value == true then
         local h = Instance.new("Highlight")
         h.Name = 'Highlight'
         h.Adornee = workspace.Ghost
