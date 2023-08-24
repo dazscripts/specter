@@ -99,12 +99,36 @@ do
 
 
 
-    local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
-        Title = "Dropdown",
-        Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
+    local Dropdown = Tabs.Main:AddDropdown("Case", {
+        Title = "Select Case To Auto Buy",
+        Values = {"Case1", "Case2", "Case3", "Case4", "MetalsCollection"},
         Multi = false,
         Default = 1,
     })
+
+    local CaseToggle = Tabs.Main:AddToggle("BuyCases", {Title = "Auto Buy Case", Default = false})
+
+    CaseToggle:OnChanged(function()
+        repeat
+            local results = game:GetService("ReplicatedStorage").Events.PurchaseCase:InvokeServer(Options.Case.Value)
+            if results.Success == true then
+                Fluent:Notify({
+                    Title = "Winnings",
+                    Content = "you won:" .. results.WinningItem.Skin .. results.WinningItem.Equipment",
+                    SubContent = "Rarity: ".. results.WinningItem.Rarity, -- Optional
+                    Duration = 3 -- Set to nil to make the notification not disappear
+                })
+            else
+                Fluent:Notify({
+                    Title = "Failed To Buy Case",
+                    Content = results.Reason,
+                    SubContent = '', -- Optional
+                    Duration = 3 -- Set to nil to make the notification not disappear
+                })
+            end
+            task.wait(1)
+        until Options.BuyCases.Value == false
+    end)
 
     Dropdown:SetValue("four")
 
