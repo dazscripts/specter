@@ -22,7 +22,7 @@ Tabs = {
 
 Options = Fluent.Options
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/https:/dazscripts/specter/GUI/InGame/Evidence.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Evidence.lua"))()
 
 
 Fluent:Notify({
