@@ -214,7 +214,8 @@ do
     local FullBright = Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
     FullBright:OnChanged(function()
         if Options.FullBright.Value == false then return end
-        repeat task.wait(1) game.Lighting.Anbience = Color3.new(172, 172, 172) until Options.FullBright.Value == false
+        repeat task.wait(1) game.Lighting.Ambient = Color3.new(0.8,0.8,0.8) until Options.FullBright.Value == false
+        game.Lighting.Ambient = Color3.new(0,0,0)
     end)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/ESP.lua"))()
 end
