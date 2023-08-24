@@ -1,7 +1,7 @@
 local library = require(rep:WaitForChild("Library"))
 
 local Window = Fluent:CreateWindow({
-    Title = 'Specter GUI',
+    Title = 'Specter GUI 1.0 |',
     SubTitle = "Lobby",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
@@ -71,11 +71,11 @@ do
                     end)
                 end    
             end)
-            task.wait(0.3)
+            task.wait(1)
         until Options.Invite.Value == false
     end)
 
-    Options.Invite:SetValue(false)
+    --Options.Invite:SetValue(false)
 
 
     
