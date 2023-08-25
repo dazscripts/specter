@@ -28,7 +28,7 @@ forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
-local Input = Tabs.Main:AddInput("message", {
+local Input = Tabs.World:AddInput("message", {
     Title = "Chat Message",
     Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",
     Placeholder = "Message",
