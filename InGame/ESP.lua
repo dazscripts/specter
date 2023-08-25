@@ -21,7 +21,7 @@ Interactables:OnChanged(function()
     if Options.Interactables.Value == true then
         repeat 
             for i,v in pairs(elec:GetChildren()) do
-                if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                if not v.Base:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
                     h.Adornee = v
