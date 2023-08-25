@@ -3,7 +3,7 @@ function rgbToColor3(r, g, b)
 end
 
 Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.9',
+    Title = 'Specter GUI 1.0.9.1',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
