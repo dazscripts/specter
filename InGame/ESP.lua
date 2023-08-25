@@ -14,6 +14,64 @@ local Closets = Tabs.Visuals:AddToggle("Closets", {Title = "Closets ESP", Defaul
 local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
 
 local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
+local elec = game:GetService("Workspace").Map.EventObjects.Electronics
+local sinks = game:GetService("Workspace").Map.EventObjects.Sinks
+local cursed = game:GetService("Workspace").Map.cursed_object
+Interactables:OnChanged(function()
+    if Options.Body.Value == true then
+        repeat 
+            for i,v in pairs(elec:GetChildren()) do
+                if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                    local h = Instance.new("Highlight")
+                    h.Name = 'Highlight'
+                    h.Adornee = v
+                    h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    h.FillColor = rgbToColor3(52, 177, 7)
+                    h.Parent = v.Base
+                    h.FillTransparency = 0.4
+                    h.OutlineTransparency = 1
+                end
+            end
+            for i,v in pairs(sinks:GetChildren()) do
+                if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                    local h = Instance.new("Highlight")
+                    h.Name = 'Highlight'
+                    h.Adornee = v
+                    h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    h.FillColor = rgbToColor3(52, 177, 7)
+                    h.Parent = v
+                    h.FillTransparency = 0.4
+                    h.OutlineTransparency = 1
+                end
+            end
+            if not cursed:FindFirstChild("Highlight") then
+                local h = Instance.new("Highlight")
+                h.Name = 'Highlight'
+                h.Adornee = v
+                h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                h.FillColor = rgbToColor3(52, 177, 7)
+                h.Parent = v
+                h.FillTransparency = 0.4
+                h.OutlineTransparency = 1
+            end
+        task.wait(5)
+        until Options.Body.Value == false
+    else
+        for i,v in pairs(elec:GetChildren()) do
+            if not v.Base:FindFirstChild("Highlight") then
+                v.Base:FindFirstChild("Highlight"):Destroy()
+            end
+        end
+        for i,v in pairs(sinks:GetChildren()) do
+            if v:FindFirstChild("Highlight") then
+                v:FindFirstChild("Highlight"):Destroy()
+            end
+        end
+        if cursed:FindFirstChild("Highlight") then
+            cursed:FindFirstChild("Highlight"):Destroy()
+        end
+    end
+end)
 
 DeadBodies:OnChanged(function()
     if Options.Body.Value == true then
