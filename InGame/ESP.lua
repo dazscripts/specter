@@ -58,7 +58,7 @@ Interactables:OnChanged(function()
         until Options.Interactables.Value == false
     else
         for i,v in pairs(elec:GetChildren()) do
-            if not v.Base:FindFirstChild("Highlight") then
+            if v.Base:FindFirstChild("Highlight") then
                 v.Base:FindFirstChild("Highlight"):Destroy()
             end
         end
