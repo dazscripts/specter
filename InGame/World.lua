@@ -1,5 +1,13 @@
 Tabs.World:AddSection("FE Scripts")
-local forcelights = Tabs.World:AddToggle("forcelights", {Title = "Spam Lights", Default = false })
+
+local Dropdown = Tabs.World:AddDropdown("Lights", {
+    Title = "Select Lights Mode",
+    Values = {"Spam", "Force All On", "Force All Off"},
+    Multi = false,
+    Default = 1,
+})
+
+local forcelights = Tabs.World:AddToggle("forcelights", {Title = "Force Lights", Default = false })
 local event = events.Lightswitch
 
 forcelights:OnChanged(function()
@@ -7,6 +15,13 @@ forcelights:OnChanged(function()
     repeat
         task.spawn(function()
             for i,v in pairs(workspace:WaitForChild("Map"):WaitForChild("Lightswitches"):GetChildren()) do
+                if Dropdown.Value == "Spam" then
+                    event:FireServer(v)
+                elseif Dropdown.Value == "Force All Off" then
+                    if v:GetAttribute("On") == true then event:FireServer(v) end
+                elseif Dropdown.Value == "Force All On" then
+                    if v:GetAttribute("On") == false then event:FireServer(v) end
+                end
                 event:FireServer(v)
             end
         end)
