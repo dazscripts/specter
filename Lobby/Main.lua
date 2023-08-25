@@ -81,6 +81,19 @@ do
             task.wait(1)
         until Options.BuyCases.Value == false
     end)
+    Tabs.Main:AddSection("Files")
+    Tabs.Evidence:AddButton({
+        Title = "Save LocalPlayer Stats",
+        Description = "Writes your stats to a file in workspace",
+        Callback = function()
+            local args = {
+                [1] = "Get Stats",
+                [2] = game.Players.LocalPlayer
+            }
+            
+            writefile('SpecterGUI/Lobby/StatSaves/' .. args[2].Name ,tableToString(game:GetService("ReplicatedStorage"):WaitForChild("Assets"):WaitForChild("Events"):WaitForChild("RemoteFunction"):InvokeServer(unpack(args))))
+        end
+    })
 end
 
 
@@ -94,7 +107,6 @@ InterfaceManager:SetLibrary(Fluent)
 
 -- Ignore keys that are used by ThemeManager.
 -- (we dont want configs to save themes, do we?)
-SaveManager:IgnoreThemeSettings()
 
 -- You can add indexes of elements the save manager should ignore
 SaveManager:SetIgnoreIndexes({})
@@ -104,6 +116,11 @@ SaveManager:SetIgnoreIndexes({})
 -- and game configs in a separate folder per game
 InterfaceManager:SetFolder("SpecterGUI")
 SaveManager:SetFolder("SpecterGUI/Lobby")
+
+if not isfolder('SpecterGUI/Lobby/StatSaves') then
+    makefolder('SpecterGUI/Lobby/StatSaves')
+end
+
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
