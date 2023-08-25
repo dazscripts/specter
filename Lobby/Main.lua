@@ -82,7 +82,7 @@ do
         until Options.BuyCases.Value == false
     end)
     Tabs.Main:AddSection("Files")
-    Tabs.Evidence:AddButton({
+    Tabs.Main:AddButton({
         Title = "Save LocalPlayer Stats",
         Description = "Writes your stats to a file in workspace",
         Callback = function()
