@@ -33,7 +33,7 @@ Interactables:OnChanged(function()
                 end
             end
             for i,v in pairs(sinks:GetChildren()) do
-                if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                if not v:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
                     h.Adornee = v
