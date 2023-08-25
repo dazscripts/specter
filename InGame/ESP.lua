@@ -7,12 +7,39 @@ Tabs.Visuals:AddSection("ESP")
 local Ghost = Tabs.Visuals:AddToggle("Ghost", {Title = "Ghost ESP", Default = false })
 
 local PlayersT = Tabs.Visuals:AddToggle("Players", {Title = "Players ESP", Default = false })
+local DeadBodies = Tabs.Visuals:AddToggle("Body", {Title = "Dead Bodies ESP", Default = false })
 
 local Closets = Tabs.Visuals:AddToggle("Closets", {Title = "Closets ESP", Default = false })
 
 local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
 
 local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
+
+DeadBodies:OnChanged(function()
+    if Options.Body.Value == true then
+        repeat 
+            for i,v in pairs(workspace.Bodies:GetChildren()) do
+                if not v.HumanoidRootPart:FindFirstChild("Highlight") then
+                    local h = Instance.new("Highlight")
+                    h.Name = 'Highlight'
+                    h.Adornee = v.Character
+                    h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                    h.FillColor = rgbToColor3(255, 160, 39)
+                    h.Parent = v.Character.HumanoidRootPart
+                    h.FillTransparency = 0.7
+                    h.OutlineTransparency = 0.7
+                end
+            end
+        task.wait(5)
+        until Options.Body.Value == false
+    else
+        for i,v in pairs(workspace.Bodies:GetChildren()) do
+            if v.HumanoidRootPart:FindFirstChild("Highlight") then
+                v.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+            end
+        end
+    end
+end)
 
 Items:OnChanged(function()
     if Options.Items.Value == true then
@@ -61,6 +88,13 @@ PlayersT:OnChanged(function()
     if Options.Players.Value == true then
         repeat 
             for i,v in pairs(Players:GetChildren()) do
+                if v:GetAttribute("Dead") == true then
+                    for i2,v2 in pairs(v.Character:GetChildren()) do
+                        if v2:IsA("BasePart") then
+                            v2.Transparency = 0
+                        end
+                    end
+                end
                 if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
