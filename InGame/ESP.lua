@@ -18,7 +18,7 @@ local elec = game:GetService("Workspace").Map.EventObjects.Electronics
 local sinks = game:GetService("Workspace").Map.EventObjects.Sinks
 local cursed = game:GetService("Workspace").Map.cursed_object
 Interactables:OnChanged(function()
-    if Options.Body.Value == true then
+    if Options.Interactables.Value == true then
         repeat 
             for i,v in pairs(elec:GetChildren()) do
                 if not v.HumanoidRootPart:FindFirstChild("Highlight") then
@@ -55,7 +55,7 @@ Interactables:OnChanged(function()
                 h.OutlineTransparency = 1
             end
         task.wait(5)
-        until Options.Body.Value == false
+        until Options.Interactables.Value == false
     else
         for i,v in pairs(elec:GetChildren()) do
             if not v.Base:FindFirstChild("Highlight") then
