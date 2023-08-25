@@ -22,10 +22,10 @@ DeadBodies:OnChanged(function()
                 if not v.HumanoidRootPart:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
-                    h.Adornee = v.Character
+                    h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                     h.FillColor = rgbToColor3(255, 160, 39)
-                    h.Parent = v.Character.HumanoidRootPart
+                    h.Parent = v.HumanoidRootPart
                     h.FillTransparency = 0.7
                     h.OutlineTransparency = 0.7
                 end
