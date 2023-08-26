@@ -94,7 +94,7 @@ local PathOptions = {
     'Van' = workspace.Van.Spawn
 }
 
-local pathtoggle = Tabs.Main:AddToggle("paths", {Title = "Show Paths", Default = false })
+local pathtoggle = Tabs.World:AddToggle("paths", {Title = "Show Paths", Default = false })
 -- Your agent parameters
 local agentRadius = 2
 local agentHeight = 5
@@ -139,7 +139,7 @@ pathtoggle:OnChanged(function()
         end
     until Options.paths.Value == false
 end)
-task.spamwn(function()
+task.spawn(function()
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
     PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object")
 end)
