@@ -1,5 +1,3 @@
-Tabs.World:AddSection("FE Scripts")
-
 local Dropdown = Tabs.World:AddDropdown("Lights", {
     Title = "Select Lights Mode",
     Values = {"Spam", "Force All On", "Force All Off"},
@@ -79,4 +77,12 @@ Tabs.World:AddSection("Paths")
 Tabs.World:AddParagraph({
     Title = "Info",
     Content = "Shows a path to specified object when available"
+})
+
+
+local Dropdown2 = Tabs.World:AddDropdown("path", {
+    Title = "Destination (Requires Remove All Doors)",
+    Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
+    Multi = false,
+    Default = nil,
 })
