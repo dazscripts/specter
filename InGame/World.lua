@@ -26,7 +26,7 @@ forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
-local Doors = Tabs.Visuals:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
+local Doors = Tabs.World:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
 
 Doors:OnChanged(function()
     if Options.Doors.Value == true then
@@ -174,6 +174,6 @@ task.spawn(function()
     PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox
     PathOptions['Van'] = workspace.Van.VanSpawn
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
-    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object")
+    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object").Base
     PathOptions['Bone'] = workspace.Map.Bone
 end)
