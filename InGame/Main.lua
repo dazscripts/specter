@@ -3,7 +3,7 @@ function rgbToColor3(r, g, b)
 end
 
 Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.9.3',
+    Title = 'Specter GUI 1.0.9.4',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
@@ -49,7 +49,7 @@ local breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunti
 breakghost:OnChanged(function()
     repeat task.wait() until Hunting == true or Options.breakghost.Value == false
     if Options.breakghost.Value == false then return end
-    repeat Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until Hunting == false or Options.breakghost.Value == false
+    repeat task.wait() Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until Hunting == false or Options.breakghost.Value == false
 end)
 
 

@@ -75,3 +75,8 @@ Dropdown:OnChanged(function()
 end)
 
 
+Tabs.World:AddSection("Paths")
+Tabs.World:AddParagraph({
+    Title = "Info",
+    Content = "Shows a path to specified object when available"
+})
