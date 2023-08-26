@@ -49,7 +49,13 @@ local breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunti
 breakghost:OnChanged(function()
     repeat task.wait() until Hunting == true or Options.breakghost.Value == false
     if Options.breakghost.Value == false then return end
-    repeat task.wait() Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until Hunting == false or Options.breakghost.Value == false
+    local origin = Char.PrimaryPart.CFrame
+    task.wait(0.1)
+    repeat task.wait() Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,7,0)) until Hunting == false or Options.breakghost.Value == false
+    Char:SetPrimaryPartCFrame(origin)
+    Options.breakghost:SetValue(false)
+    task.wait(0.1)
+    Options.breakghost:SetValue(true)
 end)
 
 
