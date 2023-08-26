@@ -96,9 +96,9 @@ Dropdown:OnChanged(function()
             return end
         plr.Character:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
     elseif a == 'Fusebox' then
-        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.PrimaryPart.CFrame)
+        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame)
     elseif a == 'Van' then
-        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.PrimaryPart.CFrame)
+        plr.Character:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
     end
 end)
 
