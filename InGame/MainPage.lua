@@ -52,5 +52,5 @@ local Pickup = Tabs.World:AddDropdown("Grab", {
 })
 local module = require(plr.PlayerScripts.ClientMain.Modules.PromptManager)
 Pickup:OnChanged(function()
-    module.HandlePrompt(workspace.Equipment[Options.Grab.Value].Main.PickupPrompt,game.Players.LocalPlayer)
+    module.HandlePrompt(workspace.Equipment[Options.Grab.Value].Main.PickupPrompt,plr)
 end)
