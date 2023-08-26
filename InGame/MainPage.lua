@@ -42,3 +42,15 @@ locator:OnChanged(function()
     task.wait(0.1)
     Options.locator:SetValue(true)
 end)
+
+
+local Pickup = Tabs.World:AddDropdown("Grab", {
+    Title = "Pickup Item",
+    Values = {"EMF Reader","Spirit Box", "Ghost Goggles", "Book", "Motion Sensor", "Crucifix", "Camera", "Flashlight", "Thermometer"},
+    Multi = false,
+    Default = nil,
+})
+local module = require(plr.PlayerScripts.ClientMain.Modules.PromptManager)
+Pickup:OnChanged(function()
+    module.HandlePrompt(workspace.Equipment[Options.Grab.Value].Main.PickupPrompt,game.Players.LocalPlayer)
+end)
