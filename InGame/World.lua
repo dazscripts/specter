@@ -88,11 +88,7 @@ local Dropdown2 = Tabs.World:AddDropdown("path", {
     Default = nil,
 })
 
-local PathOptions = {
-    ['Bone'] = workspace.Map.Bone,
-    ['Fusebox'] = workspace.Map.Fusebox.Fusebox,
-    ['Van'] = workspace.Van.VanSpawn,
-}
+local PathOptions = {}
 
 local pathtoggle = Tabs.World:AddToggle("paths", {Title = "Show Paths", Default = false })
 -- Your agent parameters
