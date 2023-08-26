@@ -126,7 +126,7 @@ pathtoggle:OnChanged(function()
             for _, waypoint in pairs(waypoints) do
                 local part = Instance.new("Part")
                 part.Size = Vector3.new(0.4,0.4,0.4)
-                part.Material = Enum.Material.Neon
+                --part.Material = Enum.Material.Neon
                 part.Position = waypoint.Position
                 part.Anchored = true
                 part.CanCollide = false
