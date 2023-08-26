@@ -26,6 +26,30 @@ forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
+local Doors = Tabs.Visuals:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
+
+Doors:OnChanged(function()
+    if Options.Doors.Value == true then
+        Instance.new("Folder",rep).Name = 'Doors'
+
+        for i,v in pairs(workspace.Map.Doors:GetChildren()) do
+            if not v:GetAttribute("Closet") then
+                v.Parent = rep.Doors
+            end
+        end
+    else
+        if rep:FindFirstChild("Doors") then
+            for i,v in pairs(rep.Doors:GetChildren()) do
+                v.Parent = workspace.Map.Doors
+            end
+
+            rep.Doors:Destroy()
+        end
+
+    end
+end)
+
+
 Tabs.World:AddSection("Teleports")
 
 local Dropdown = Tabs.World:AddDropdown("zone", {
@@ -66,23 +90,38 @@ Dropdown:OnChanged(function()
             return end
         Char:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
     elseif a == 'Fusebox' then
-        Char:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame)
+        Char:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame * CFrame.new(0,0,-3))
     elseif a == 'Van' then
         Char:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
     end
 end)
+local Rooms = {}
+for i,v in pairs(workspace.Map.Rooms:GetChildren()) do
+    table.insert(Rooms,v.Name)
+end
 
+local NewDropdown = Tabs.World:AddDropdown("room", {
+    Title = "Room Teleport",
+    Values = Rooms,
+    Multi = false,
+    Default = nil,
+})
+
+NewDropdown:OnChanged(function()
+    if not workspace.Map.Rooms:FindFirstChild(Options.room.Value) then return end
+    Char:SetPrimaryPartCFrame(workspace.Map.Rooms:FindFirstChild(Options.room.Value).Hitbox.CFrame)
+end)
 
 Tabs.World:AddSection("Paths [REQUIRES REMOVE ALL DOORS]")
 Tabs.World:AddParagraph({
-    Title = "PAthfinding Info",
+    Title = "Pathfinding Info",
     Content = "Shows a path to specified object when available"
 })
 
 local PathfindingService = game:GetService("PathfindingService")
 
 local Dropdown2 = Tabs.World:AddDropdown("path", {
-    Title = "Destination (Requires Remove All Doors)",
+    Title = "Destination",
     Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
     Multi = false,
     Default = nil,

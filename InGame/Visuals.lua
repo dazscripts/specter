@@ -1,3 +1,13 @@
+Tabs.Visuals:AddSection("World")
+
+local FullBright = Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
+
+FullBright:OnChanged(function()
+    if Options.FullBright.Value == false then return end
+    repeat task.wait(0.1) game.Lighting.ExposureCompensation = 3 until Options.FullBright.Value == false
+    game.Lighting.ExposureCompensation = -1
+end)
+
 local doors = workspace.Map.Doors
 local closets = workspace.Map.Closets
 local equipment = workspace.Equipment
@@ -8,10 +18,11 @@ local Ghost = Tabs.Visuals:AddToggle("Ghost", {Title = "Ghost ESP", Default = fa
 
 local PlayersT = Tabs.Visuals:AddToggle("Players", {Title = "Players ESP", Default = false })
 local DeadBodies = Tabs.Visuals:AddToggle("Body", {Title = "Dead Bodies ESP", Default = false })
+local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
 
 local Closets = Tabs.Visuals:AddToggle("Closets", {Title = "Closets ESP", Default = false })
+local Van = Tabs.Visuals:AddToggle("Van", {Title = "Van ESP", Default = false })
 
-local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
 
 local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
 local elec = game:GetService("Workspace").Map.EventObjects.Electronics
@@ -71,6 +82,25 @@ Interactables:OnChanged(function()
             cursed:FindFirstChild("Highlight"):Destroy()
         end
     end
+end)
+
+Van:OnChanged(function()
+    if Options.Van.Value == true then
+        if not workspace.Van:FindFirstChild("Highlight") then
+            local h = Instance.new("Highlight")
+            h.Name = 'Highlight'
+            h.Adornee = workspace.Van:FindFirstChild("Highlight")
+            h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            h.Parent = workspace.Van:FindFirstChild("Highlight")
+            h.FillTransparency = 1
+            h.OutlineTransparency = 0.3  
+        end
+    else
+        if workspace.Van:FindFirstChild("Highlight") then
+            workspace.Van:FindFirstChild("Highlight"):Destroy()
+        end
+    end
+
 end)
 
 DeadBodies:OnChanged(function()

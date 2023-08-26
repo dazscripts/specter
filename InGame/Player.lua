@@ -1,6 +1,6 @@
 Tabs.Player:AddSection("Player Customizations")
 
-local third = Tabs.Player:AddToggle("third", {Title = "Enable Third Person", Default = false })
+local third = Tabs.Player:AddToggle("third", {Title = "Enable Third Person", Default = true })
 third:OnChanged(function()
     if Options.third.Value then
         plr.CameraMaxZoomDistance = 10000
