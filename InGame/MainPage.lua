@@ -44,7 +44,7 @@ locator:OnChanged(function()
 end)
 
 
-local Pickup = Tabs.World:AddDropdown("Grab", {
+local Pickup = Tabs.Main:AddDropdown("Grab", {
     Title = "Pickup Item",
     Values = {"EMF Reader","Spirit Box", "Ghost Goggles", "Book", "Motion Sensor", "Crucifix", "Camera", "Flashlight", "Thermometer"},
     Multi = false,
