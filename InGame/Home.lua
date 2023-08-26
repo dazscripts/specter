@@ -9,6 +9,6 @@ Tabs.Home:AddParagraph({
 })
 Tabs.Home:AddSection("Info")
 Tabs.Home:AddParagraph({
-    Title = "MAP: "..rep:GetAttribute("Map"),
-    Content = "Difficulty: "..rep:GetAttribute("Difficulty").. " Van: " .. rep:GetAttribute("Van")
+    Title = rep:GetAttribute("Map"),
+    Content = "Difficulty: "..rep:GetAttribute("Difficulty").. "\nVan: " .. rep:GetAttribute("VanType")
 })

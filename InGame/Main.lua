@@ -26,11 +26,9 @@ Options = Fluent.Options
 
 -- // PAGES \\ --
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/blob/GUI/InGame/Home.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Home.lua"))()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/blob/GUI/InGame/MainPage.lua"))()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/blob/GUI/InGame/Home.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/MainPage.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/World.lua"))()
 

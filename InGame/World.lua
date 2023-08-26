@@ -95,23 +95,17 @@ Dropdown:OnChanged(function()
         Char:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
     end
 end)
-local Rooms = {}
+local AllRooms = {}
 for i,v in pairs(workspace.Map.Rooms:GetChildren()) do
-    table.insert(Rooms,v.Name)
+    AllRooms[i] = v.Name
 end
 
-local NewDropdown = Tabs.World:AddDropdown("room", {
+local Room = Tabs.World:AddDropdown("Room", {
     Title = "Room Teleport",
-    Values = Rooms,
+    Values = AllRooms,
     Multi = false,
     Default = nil,
 })
-
-NewDropdown:OnChanged(function()
-    if not workspace.Map.Rooms:FindFirstChild(Options.room.Value) then return end
-    Char:SetPrimaryPartCFrame(workspace.Map.Rooms:FindFirstChild(Options.room.Value).Hitbox.CFrame)
-end)
-
 Tabs.World:AddSection("Paths [REQUIRES REMOVE ALL DOORS]")
 Tabs.World:AddParagraph({
     Title = "Pathfinding Info",
