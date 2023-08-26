@@ -16,6 +16,8 @@ local orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", 
 
 local fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
 
+local sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box (Must be in ghost room and near the spirit box)", Default = false })
+
 local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
 Tabs.Evidence:AddButton({
@@ -59,6 +61,33 @@ Tabs.Evidence:AddButton({
         end
     end
 })
+
+local msgs = {}
+msgs[1] = "Are you there?"
+msgs[2] = "Where are you?"
+msgs[3] = "Are you a man?"
+msgs[4] = "Are you a woman?"
+msgs[5] = "How did you die?"
+msgs[6] = "How old are you?"
+msgs[7] = "When were you born?"
+msgs[8] = "What is your name?"
+msgs[9] = "Are you friendly?"
+msgs[10] = "Can you talk?"
+msgs[11] = "What do you want?"
+
+local remote = game.ReplicatedStorage.Events.SimulateChatEvent
+
+sb:OnChanged(function()
+    if not Options.SpiritBox.Value then return end
+    repeat
+        task.spawn(function()
+            for _,v in pairs(msgs) do
+                remote:FireServer(v)
+            end
+        end)
+        task.wait(0.1)
+    until not Options.SpiritBox.Value
+end)
 
 emf:OnChanged(function()
     if not Options.EMF.Value then return end

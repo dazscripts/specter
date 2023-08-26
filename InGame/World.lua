@@ -51,5 +51,7 @@ end)
 
 local breakghost = Tabs.World:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
 breakghost:OnChanged(function()
-
+    repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
+    if Options.breakghost.Value == false then return end
+    --repeat until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
 end)

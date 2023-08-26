@@ -153,7 +153,7 @@ PlayersT:OnChanged(function()
                         end
                     end
                 end
-                if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
+                if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") and v ~= plr then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
                     h.Adornee = v.Character
@@ -183,7 +183,7 @@ Closets:OnChanged(function()
                 h.Name = 'Highlight'
                 h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.FillColor = rgbToColor3(79, 255, 69)
+                h.FillColor = rgbToColor3(0,255,0)
                 h.Parent = v.Area
                 h.FillTransparency = 0.5
                 h.OutlineTransparency = 1
