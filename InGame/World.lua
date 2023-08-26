@@ -55,3 +55,52 @@ breakghost:OnChanged(function()
     if Options.breakghost.Value == false then return end
     --repeat until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
 end)
+
+Tabs.World:AddSection("Teleports")
+workspace.Map.Bone
+
+local Dropdown = Tabs.Main:AddDropdown("zone", {
+    Title = "Zone Teleport",
+    Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
+    Multi = false,
+    Default = nil,
+})
+
+Dropdown:OnChanged(function()
+    local a = Options.zone.Value
+    if a == 'Ghost Room' then
+        if not workspace:FindFirstChild("emfpart2") then
+            Fluent:Notify({
+                Title = "Error",
+                Content = "Couldnt find Ghost room!",
+                SubContent = "Try Opening the van door?", -- Optional
+                Duration = 5 -- Set to nil to make the notification not disappear
+            }) return end
+        plr.Character:SetPrimaryPartCFrame(workspace:FindFirstChild("emfpart2").CFrame)
+    elseif a == 'Bone' then
+        if not workspace.Map:FindFirstChild("Bone") then
+            Fluent:Notify({
+                Title = "Error",
+                Content = "Couldnt find Bone!",
+                SubContent = "Somebody may have taken the bone.", -- Optional
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            return end
+        plr.Character:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("Bone").CFrame)
+    elseif a == 'Cursed Object' then
+        if not workspace.Map:FindFirstChild("cursed_object") then
+            Fluent:Notify({
+                Title = "Error",
+                Content = "Couldnt find Cursed Object!",
+                Duration = 5 -- Set to nil to make the notification not disappear
+            })
+            return end
+        plr.Character:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
+    elseif a == 'Fusebox' then
+        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.PrimaryPart.CFrame)
+    elseif a == 'Van' then
+        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.PrimaryPart.CFrame)
+    end
+end)
+
+

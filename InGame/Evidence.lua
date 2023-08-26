@@ -16,7 +16,7 @@ local orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", 
 
 local fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
 
-local sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box (Must be in ghost room and near the spirit box)", Default = false })
+local sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box \n (Must be in the ghost room and Spirit Box must be inside the room turned on)", Default = false })
 
 local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 
