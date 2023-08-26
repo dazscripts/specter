@@ -14,7 +14,7 @@ Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
     Home = Window:AddTab({ Title = "Home", Icon = "scroll" }),
-    Main = Window:AddTab({ Title = "Main", Icon = "computer" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
     World = Window:AddTab({ Title = "World", Icon = "globe" }),
     Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Evidence = Window:AddTab({ Title = "Evidence", Icon = "book" }),
