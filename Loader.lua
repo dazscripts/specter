@@ -8,6 +8,7 @@ InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/da
 
 Players = game:GetService("Players")
 plr = Players.LocalPlayer
+Char = plr.Character
 
 for _, v in next, getconnections(plr.Idled) do
     v:Disable()
@@ -45,6 +46,8 @@ end
 if game.PlaceId == LobbyId then
     loadstring(game:HttpGet('https://raw.githubusercontent.com/dazscripts/specter/GUI/Lobby/Main.lua'))()
 elseif game.PlaceId == GameId then
+    Hunting = false
+    events.Hunt.OnClientEvent:Connect(function() Hunting = not Hunting end)
     loadstring(game:HttpGet('https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Main.lua'))()
 
 end

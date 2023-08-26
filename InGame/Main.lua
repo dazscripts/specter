@@ -13,8 +13,8 @@ Window = Fluent:CreateWindow({
 })
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
-    Home = Window:AddTab({ Title = "Home", Icon = "tv2" }),
-    Main = Window:AddTab({ Title = "Main", Icon = "scroll" }),
+    Home = Window:AddTab({ Title = "Home", Icon = "scroll" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "computer" }),
     World = Window:AddTab({ Title = "World", Icon = "globe" }),
     Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Evidence = Window:AddTab({ Title = "Evidence", Icon = "book" }),
@@ -47,16 +47,15 @@ end)
 
 local breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
 breakghost:OnChanged(function()
-    repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
+    repeat task.wait() until Hunting == true or Options.breakghost.Value == false
     if Options.breakghost.Value == false then return end
-    repeat plr.Character:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
+    repeat Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until Hunting == false or Options.breakghost.Value == false
 end)
 
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/World.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Player.lua"))()
-
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Evidence.lua"))()
 
@@ -74,20 +73,20 @@ local Doors = Tabs.Visuals:AddToggle("Doors", {Title = "Remove All Doors", Defau
 
 Doors:OnChanged(function()
     if Options.Doors.Value == true then
-        Instance.new("Folder",game.ReplicatedStorage).Name = 'Doors'
+        Instance.new("Folder",rep).Name = 'Doors'
 
         for i,v in pairs(workspace.Map.Doors:GetChildren()) do
             if not v:GetAttribute("Closet") then
-                v.Parent = game.ReplicatedStorage.Doors
+                v.Parent = rep.Doors
             end
         end
     else
-        if game.ReplicatedStorage:FindFirstChild("Doors") then
-            for i,v in pairs(game.ReplicatedStorage.Doors:GetChildren()) do
+        if rep:FindFirstChild("Doors") then
+            for i,v in pairs(rep.Doors:GetChildren()) do
                 v.Parent = workspace.Map.Doors
             end
 
-            game.ReplicatedStorage.Doors:Destroy()
+            rep.Doors:Destroy()
         end
 
     end

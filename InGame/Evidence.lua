@@ -8,6 +8,7 @@ local function PutEvidence(evidence)
         end
     end
 end
+
 local emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect EMF 5", Default = false })
 
 local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
@@ -24,11 +25,11 @@ Tabs.Evidence:AddButton({
     Title = "Detect Freezing Temperatures",
     Description = "MUST START GAME TO PREVENT BREAKING",
     Callback = function()
-        local Origin = plr.Character.PrimaryPart.CFrame
-        plr.Character:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)
+        local Origin = Char.PrimaryPart.CFrame
+        Char:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)
         task.wait(0.2)
-        if plr.Character.Head.BreathAttachment.Breath.Enabled == true then
-            plr.Character:SetPrimaryPartCFrame(Origin)
+        if Char.Head.BreathAttachment.Breath.Enabled == true then
+            Char:SetPrimaryPartCFrame(Origin)
 
             Window:Dialog({
                 Title = "Temperature Results",
@@ -47,7 +48,7 @@ Tabs.Evidence:AddButton({
                 }
             })
         else
-            plr.Character:SetPrimaryPartCFrame(Origin)
+            Char:SetPrimaryPartCFrame(Origin)
             Window:Dialog({
                 Title = "Temperature Results",
                 Content = "Freezing Temperature was not found.",
@@ -75,7 +76,7 @@ msgs[9] = "Are you friendly?"
 msgs[10] = "Can you talk?"
 msgs[11] = "What do you want?"
 
-local remote = game.ReplicatedStorage.Events.SimulateChatEvent
+local remote = events.SimulateChatEvent
 
 sb:OnChanged(function()
     if not Options.SpiritBox.Value then return end

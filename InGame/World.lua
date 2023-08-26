@@ -47,7 +47,7 @@ Dropdown:OnChanged(function()
                 SubContent = "Try Opening the van door?", -- Optional
                 Duration = 5 -- Set to nil to make the notification not disappear
             }) return end
-        plr.Character:SetPrimaryPartCFrame(workspace:FindFirstChild("emfpart2").CFrame)
+        Char:SetPrimaryPartCFrame(workspace:FindFirstChild("emfpart2").CFrame)
     elseif a == 'Bone' then
         if not workspace.Map:FindFirstChild("Bone") then
             Fluent:Notify({
@@ -57,7 +57,7 @@ Dropdown:OnChanged(function()
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
             return end
-        plr.Character:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("Bone").CFrame)
+        Char:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("Bone").CFrame)
     elseif a == 'Cursed Object' then
         if not workspace.Map:FindFirstChild("cursed_object") then
             Fluent:Notify({
@@ -66,11 +66,11 @@ Dropdown:OnChanged(function()
                 Duration = 5 -- Set to nil to make the notification not disappear
             })
             return end
-        plr.Character:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
+        Char:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
     elseif a == 'Fusebox' then
-        plr.Character:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame)
+        Char:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame)
     elseif a == 'Van' then
-        plr.Character:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
+        Char:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
     end
 end)
 
