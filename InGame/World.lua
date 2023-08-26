@@ -28,34 +28,6 @@ forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
-local Input = Tabs.World:AddInput("message", {
-    Title = "Chat Message",
-    Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",
-    Placeholder = "Message",
-    Numeric = false, -- Only allows numbers
-    Finished = false, -- Only calls callback when you press enter
-    Callback = function(Value)end
-})
-
-local TSC = game:GetService("TextChatService")
-local Channel = TSC.TextChannels.RBXGeneral
-
-local spamchat = Tabs.World:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
-spamchat:OnChanged(function()
-    if Options.spamchat.Value == false then return end
-    repeat
-        Channel:SendAsync(Input.Value)
-        task.wait(3)
-    until Options.spamchat.Value == false
-end)
-
-local breakghost = Tabs.World:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
-breakghost:OnChanged(function()
-    repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
-    if Options.breakghost.Value == false then return end
-    --repeat until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
-end)
-
 Tabs.World:AddSection("Teleports")
 
 local Dropdown = Tabs.World:AddDropdown("zone", {

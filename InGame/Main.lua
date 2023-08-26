@@ -13,6 +13,8 @@ Window = Fluent:CreateWindow({
 })
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
+    Home = Window:AddTab({ Title = "Home", Icon = "tv2" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "scroll" }),
     World = Window:AddTab({ Title = "World", Icon = "globe" }),
     Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Evidence = Window:AddTab({ Title = "Evidence", Icon = "book" }),
@@ -21,6 +23,36 @@ Tabs = {
 }
 
 Options = Fluent.Options
+
+local Input = Tabs.Main:AddInput("message", {
+    Title = "Chat Message",
+    Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",
+    Placeholder = "Message",
+    Numeric = false, -- Only allows numbers
+    Finished = false, -- Only calls callback when you press enter
+    Callback = function(Value)end
+})
+
+local TSC = game:GetService("TextChatService")
+local Channel = TSC.TextChannels.RBXGeneral
+
+local spamchat = Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
+spamchat:OnChanged(function()
+    if Options.spamchat.Value == false then return end
+    repeat
+        Channel:SendAsync(Input.Value)
+        task.wait(3)
+    until Options.spamchat.Value == false
+end)
+
+local breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
+breakghost:OnChanged(function()
+    repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
+    if Options.breakghost.Value == false then return end
+    repeat plr.Character:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(0,9,0)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
+end)
+
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/World.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Player.lua"))()
