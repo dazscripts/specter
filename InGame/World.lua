@@ -89,9 +89,9 @@ local Dropdown2 = Tabs.World:AddDropdown("path", {
 })
 
 local PathOptions = {
-    'Bone' = workspace.Map.Bone
-    'Fusebox' = workspace.Map.Fusebox.Fusebox
-    'Van' = workspace.Van.Spawn
+    'Bone' = workspace.Map.Bone,
+    'Fusebox' = workspace.Map.Fusebox.Fusebox,
+    'Van' = workspace.Van.Spawn,
 }
 
 local pathtoggle = Tabs.World:AddToggle("paths", {Title = "Show Paths", Default = false })
