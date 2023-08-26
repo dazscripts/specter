@@ -59,7 +59,7 @@ end)
 Tabs.World:AddSection("Teleports")
 workspace.Map.Bone
 
-local Dropdown = Tabs.Main:AddDropdown("zone", {
+local Dropdown = Tabs.World:AddDropdown("zone", {
     Title = "Zone Teleport",
     Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
     Multi = false,
