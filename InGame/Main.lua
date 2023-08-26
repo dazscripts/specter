@@ -3,7 +3,7 @@ function rgbToColor3(r, g, b)
 end
 
 Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.9.4',
+    Title = 'Specter GUI 1.0.9.6',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
@@ -25,6 +25,8 @@ Tabs = {
 Options = Fluent.Options
 
 -- // PAGES \\ --
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/blob/GUI/InGame/Home.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/blob/GUI/InGame/MainPage.lua"))()
 
