@@ -58,7 +58,6 @@ breakghost:OnChanged(function()
     Options.breakghost:SetValue(true)
 end)
 
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/World.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Player.lua"))()

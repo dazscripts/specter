@@ -79,6 +79,7 @@ Tabs.World:AddParagraph({
     Content = "Shows a path to specified object when available"
 })
 
+local PathfindingService = game:GetService("PathfindingService")
 
 local Dropdown2 = Tabs.World:AddDropdown("path", {
     Title = "Destination (Requires Remove All Doors)",
@@ -86,3 +87,59 @@ local Dropdown2 = Tabs.World:AddDropdown("path", {
     Multi = false,
     Default = nil,
 })
+
+local PathOptions = {
+    'Bone' = workspace.Map.Bone
+    'Fusebox' = workspace.Map.Fusebox.Fusebox
+    'Van' = workspace.Van.Spawn
+}
+
+local pathtoggle = Tabs.Main:AddToggle("paths", {Title = "Show Paths", Default = false })
+-- Your agent parameters
+local agentRadius = 2
+local agentHeight = 5
+local agentCanJump = false
+local agentJumpHeight = 10
+local agentMaxSlope = 45
+
+local agentParameters = {
+    Radius = agentRadius,
+    Height = agentHeight,
+    CanJump = agentCanJump,
+    JumpHeight = agentJumpHeight,
+    MaxSlope = agentMaxSlope,
+}
+
+pathtoggle:OnChanged(function()
+    if Options.paths.Value == false then return end
+    repeat task.wait(0.5)
+        local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        local endPosition = PathOptions[Dropdown2.Value].Position
+        
+        local path = PathfindingService:CreatePath(agentParameters)
+        
+        path:ComputeAsync(startPosition, endPosition)
+        
+        if path.Status == Enum.PathStatus.Success then
+            local waypoints = path:GetWaypoints()
+            
+            for _, waypoint in pairs(waypoints) do
+                local part = Instance.new("Part")
+                part.Size = Vector3.new(0.4,0.4,0.4)
+                part.Material = Enum.Material.Neon
+                part.Position = waypoint.Position
+                part.Anchored = true
+                part.CanCollide = false
+                part.Parent = Workspace
+                task.spawn(function()
+                    task.wait(0.5)
+                    part:Destroy()
+                end)
+            end
+        end
+    until Options.paths.Value == false
+end)
+task.spamwn(function()
+    PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
+    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object")
+end)

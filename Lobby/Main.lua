@@ -66,7 +66,7 @@ do
             if results.Success == true then
                 Fluent:Notify({
                     Title = "Winnings",
-                    Content = "you won:" .. results.Data.WinningItem.Skin .. results.Data.WinningItem.Equipment,
+                    Content = "you won:" .. results.Data.WinningItem.Skin.. ' ' .. results.Data.WinningItem.Equipment,
                     SubContent = "Rarity: ".. results.Data.WinningItem.Rarity, -- Optional
                     Duration = 3 -- Set to nil to make the notification not disappear
                 })
