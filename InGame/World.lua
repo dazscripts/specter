@@ -89,9 +89,9 @@ local Dropdown2 = Tabs.World:AddDropdown("path", {
 })
 
 local PathOptions = {
-    'Bone' = workspace.Map.Bone,
-    'Fusebox' = workspace.Map.Fusebox.Fusebox,
-    'Van' = workspace.Van.Spawn,
+    ['Bone'] = workspace.Map.Bone,
+    ['Fusebox'] = workspace.Map.Fusebox.Fusebox,
+    ['Van'] = workspace.Van.VanSpawn,
 }
 
 local pathtoggle = Tabs.World:AddToggle("paths", {Title = "Show Paths", Default = false })
@@ -114,6 +114,7 @@ pathtoggle:OnChanged(function()
     if Options.paths.Value == false then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+        repeat task.wait() until Dropdown2.Value ~= nil
         local endPosition = PathOptions[Dropdown2.Value].Position
         
         local path = PathfindingService:CreatePath(agentParameters)
@@ -126,11 +127,12 @@ pathtoggle:OnChanged(function()
             for _, waypoint in pairs(waypoints) do
                 local part = Instance.new("Part")
                 part.Size = Vector3.new(0.4,0.4,0.4)
-                --part.Material = Enum.Material.Neon
+                part.Material = Enum.Material.Neon
                 part.Position = waypoint.Position
                 part.Anchored = true
                 part.CanCollide = false
                 part.Parent = Workspace
+				part.Shape = 'Ball'
                 task.spawn(function()
                     task.wait(0.5)
                     part:Destroy()
@@ -140,6 +142,9 @@ pathtoggle:OnChanged(function()
     until Options.paths.Value == false
 end)
 task.spawn(function()
+    PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox,
+    PathOptions['Van'] = workspace.Van.VanSpawn,
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
     PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object")
+    PathOptions['Bone'] = workspace.Map.Bone,
 end)
