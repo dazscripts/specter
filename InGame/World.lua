@@ -57,7 +57,6 @@ breakghost:OnChanged(function()
 end)
 
 Tabs.World:AddSection("Teleports")
-workspace.Map.Bone
 
 local Dropdown = Tabs.World:AddDropdown("zone", {
     Title = "Zone Teleport",
