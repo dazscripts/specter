@@ -22,6 +22,7 @@ breakghost:OnChanged(function()
     task.wait(0.1)
     Options.breakghost:SetValue(true)
 end)
+
 local WaypointRemote = events.Waypoint
 locator:OnChanged(function()
     repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.locator.Value == false

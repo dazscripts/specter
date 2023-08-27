@@ -49,9 +49,8 @@ emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect EMF 5", Default = fal
 writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
 orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", Default = false })
 fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
-sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box \n (Must be in the ghost room and Spirit Box must be inside the room turned on)", Default = false })
-auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
-Tabs.Evidence:AddButton({Title = "Detect Freezing Temperatures",Description = "MUST START GAME TO PREVENT BREAKING",Callback = function()local Origin = Char.PrimaryPart.CFrameChar:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)task.wait(0.2)if Char.Head.BreathAttachment.Breath.Enabled == true then Char:SetPrimaryPartCFrame(Origin) Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was found! Would you like to enter it into the journal?",Buttons = {{Title = "Yes", Callback = function()PutEvidence("Freezing Temperature")end},{Title = "No",Callback = function()end},}})elseChar:SetPrimaryPartCFrame(Origin)Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was not found.",Buttons = {{Title = "Okay",Callback = function()end},}})end end})
+sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box \n Normal Spirit Box restrictions apply", Default = false })
+Tabs.Evidence:AddButton({Title = "Detect Freezing Temperatures",Description = "MUST START GAME TO PREVENT BREAKING",Callback = function()local Origin = Char.PrimaryPart.CFrameChar:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)task.wait(0.2)if Char.Head.BreathAttachment.Breath.Enabled == true then Char:SetPrimaryPartCFrame(Origin) Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was found! Would you like to enter it into the journal?",Buttons = {{Title = "Yes", Callback = function()PutEvidence("Freezing Temperature")end},{Title = "No",Callback = function()end},}})else Char:SetPrimaryPartCFrame(Origin)Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was not found.",Buttons = {{Title = "Okay",Callback = function()end},}})end end})
 Tabs.Evidence:AddSection("Objectives")
 local ObjectivePath = workspace.Van.Objectives.SurfaceGui.Frame.Objectives
 Tabs.Evidence:AddParagraph({Title = "Objectives",Content = ObjectivePath.Identify.Text .. '\n' .. ObjectivePath['1'].Text .. '\n' .. ObjectivePath['2'].Text .. '\n' .. ObjectivePath['3'].Text})
@@ -76,8 +75,9 @@ Van = Tabs.Visuals:AddToggle("Van", {Title = "Van ESP", Default = false })
 
 Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
 
-Tabs.Visuals:AddSection("Script Customizations")
+Tabs.Settings:AddSection("Script Customizations")
 
+auto = Tabs.Settings:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
 locator = Tabs.Settings:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
 ghostnotifs = Tabs.Settings:AddToggle("ghostnotifs", {Title = "Ghost Hunting Notification", Default = false })
 objecttp = Tabs.Settings:AddToggle("objecttp", {Title = "Use Teleports For Lights/Doors", Default = false })
