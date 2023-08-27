@@ -11,6 +11,7 @@ forcelights:OnChanged(function()
                     if v:GetAttribute("On") == true then 
                         if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
                             local k = Char.PrimaryPart.CFrame
+                            task.wait(0.1)
                             Char:SetPrimaryPartCFrame(v.Up.CFrame * CFrame.new(0,0,-3))
                             task.wait(0.1)
                             event:FireServer(v) 
@@ -24,6 +25,7 @@ forcelights:OnChanged(function()
                     if v:GetAttribute("On") == false then
                         if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
                             local k = Char.PrimaryPart.CFrame
+                            task.wait(0.1)
                             Char:SetPrimaryPartCFrame(v.Up.CFrame * CFrame.new(0,0,-3))
                             task.wait(0.1)
                             event:FireServer(v) 
