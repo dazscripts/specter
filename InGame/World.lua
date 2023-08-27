@@ -171,10 +171,18 @@ pathtoggle:OnChanged(function()
         end
     until Options.paths.Value == false
 end)
+
+local function item(v)
+    if not v then
+        return nil
+    else return v
+    end
+end
+
 task.spawn(function()
     PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox
     PathOptions['Van'] = workspace.Van.VanSpawn
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
-    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object").PrimaryPart
+    PathOptions['Cursed Object'] = item(workspace.Map:FindFirstChild("cursed_object").PrimaryPart)
     PathOptions['Bone'] = workspace.Map.Bone
 end)
