@@ -5,7 +5,7 @@ local Dropdown = Tabs.World:AddDropdown("Lights", {
     Default = 1,
 })
 
-local forcelights = Tabs.World:AddToggle("forcelights", {Title = "Force Lights", Default = false })
+
 local event = events.Lightswitch
 
 forcelights:OnChanged(function()
@@ -26,7 +26,6 @@ forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
-local Doors = Tabs.World:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
 
 Doors:OnChanged(function()
     if Options.Doors.Value == true then
@@ -50,16 +49,9 @@ Doors:OnChanged(function()
 end)
 
 
-Tabs.World:AddSection("Teleports")
 
-local Dropdown = Tabs.World:AddDropdown("zone", {
-    Title = "Zone Teleport",
-    Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
-    Multi = false,
-    Default = nil,
-})
 
-Dropdown:OnChanged(function()
+ZoneDropdown:OnChanged(function()
     local a = Options.zone.Value
     if a == 'Ghost Room' then
         if not workspace:FindFirstChild("emfpart2") then
@@ -95,39 +87,21 @@ Dropdown:OnChanged(function()
         Char:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
     end
 end)
-local AllRooms = {}
-for i,v in pairs(workspace.Map.Rooms:GetChildren()) do
-    AllRooms[i] = v.Name
-end
 
-local Room = Tabs.World:AddDropdown("Room", {
-    Title = "Room Teleport",
-    Values = AllRooms,
-    Multi = false,
-    Default = nil,
-})
-Tabs.World:AddSection("Paths [REQUIRES REMOVE ALL DOORS]")
-Tabs.World:AddParagraph({
-    Title = "Pathfinding Info",
-    Content = "Shows a path to specified object when available"
-})
+RoomTeleports:OnChanged(function()
+    local a = workspace.Map.Rooms:FindFirstChild("Options.Room.Value")
+    if not a then return end
+    Char:SetPrimaryPartCFrame(a.Hitbox,CFrame)
+end)
 
 local PathfindingService = game:GetService("PathfindingService")
 
-local Dropdown2 = Tabs.World:AddDropdown("path", {
-    Title = "Destination",
-    Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},
-    Multi = false,
-    Default = nil,
-})
-
 local PathOptions = {}
 
-local pathtoggle = Tabs.World:AddToggle("paths", {Title = "Show Paths", Default = false })
 -- Your agent parameters
 local agentRadius = 2
 local agentHeight = 5
-local agentCanJump = false
+local agentCanJump = true
 local agentJumpHeight = 10
 local agentMaxSlope = 45
 
@@ -140,7 +114,7 @@ local agentParameters = {
 }
 
 pathtoggle:OnChanged(function()
-    if Options.paths.Value == false then return end
+    if Options.paths.Value == false or not Options.path.Value then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
         repeat task.wait() until Dropdown2.Value ~= nil

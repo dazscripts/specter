@@ -1,17 +1,8 @@
 
-local Input = Tabs.Main:AddInput("message", {
-    Title = "Chat Message",
-    Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",
-    Placeholder = "Message",
-    Numeric = false, -- Only allows numbers
-    Finished = false, -- Only calls callback when you press enter
-    Callback = function(Value)end
-})
 
 local TSC = game:GetService("TextChatService")
 local Channel = TSC.TextChannels.RBXGeneral
 
-local spamchat = Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
 spamchat:OnChanged(function()
     if Options.spamchat.Value == false then return end
     repeat
@@ -20,7 +11,6 @@ spamchat:OnChanged(function()
     until Options.spamchat.Value == false
 end)
 
-local breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
 breakghost:OnChanged(function()
     repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
     if Options.breakghost.Value == false then return end
@@ -33,7 +23,6 @@ breakghost:OnChanged(function()
     Options.breakghost:SetValue(true)
 end)
 local WaypointRemote = events.Waypoint
-local locator = Tabs.Main:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
 locator:OnChanged(function()
     repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.locator.Value == false
     if Options.locator.Value == false then return end

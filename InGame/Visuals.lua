@@ -1,49 +1,14 @@
-Tabs.Visuals:AddSection("World")
-
-local FullBright = Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
-
 FullBright:OnChanged(function()
     if Options.FullBright.Value == false then return end
     repeat task.wait(0.1) game.Lighting.ExposureCompensation = 3 until Options.FullBright.Value == false
     game.Lighting.ExposureCompensation = -1
 end)
 
-local Input = Tabs.Visuals:AddInput("xray", {
-    Title = "Xray Opacity",
-    Default = "0",
-    Placeholder = "Opacity",
-    Numeric = true, -- Only allows numbers
-    Finished = true, -- Only calls callback when you press enter
-    Callback = function(Value)
-        for i,v in pairs(workspace.Map:GetDescendants()) do
-            pcall(function()
-                if v.Transparency == nil then print("no transparency detected") else
-                    if not v:GetAttribute("OriginalTransparency") and v.Transparency ~= 1 then v:SetAttribute("OriginalTransparency", v.Transparency) end
-                    if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")
-                    elseif v.Transparency ~= 1 then v.Transparency = Value end
-                end
-            end)
-        end
-    end
-})
 
 local doors = workspace.Map.Doors
 local closets = workspace.Map.Closets
 local equipment = workspace.Equipment
 
-Tabs.Visuals:AddSection("ESP")
-
-local Ghost = Tabs.Visuals:AddToggle("Ghost", {Title = "Ghost ESP", Default = false })
-
-local PlayersT = Tabs.Visuals:AddToggle("Players", {Title = "Players ESP", Default = false })
-local DeadBodies = Tabs.Visuals:AddToggle("Body", {Title = "Dead Bodies ESP", Default = false })
-local Items = Tabs.Visuals:AddToggle("Items", {Title = "Items ESP", Default = false })
-
-local Closets = Tabs.Visuals:AddToggle("Closets", {Title = "Closets ESP", Default = false })
-local Van = Tabs.Visuals:AddToggle("Van", {Title = "Van ESP", Default = false })
-
-
-local Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
 local elec = game:GetService("Workspace").Map.EventObjects.Electronics
 local sinks = game:GetService("Workspace").Map.EventObjects.Sinks
 local cursed = game:GetService("Workspace").Map.cursed_object
@@ -190,18 +155,12 @@ Ghost:OnChanged(function()
         end
     end
 end)
-
+local client = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.ClientMain)
 PlayersT:OnChanged(function()
     if Options.Players.Value == true then
         repeat 
             for i,v in pairs(Players:GetChildren()) do
-                if v:GetAttribute("Dead") == true then
-                    for i2,v2 in pairs(v.Character:GetChildren()) do
-                        if v2:IsA("BasePart") then
-                            v2.Transparency = 0
-                        end
-                    end
-                end
+                client.toggleDeadVisible(true)
                 if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") and v ~= plr then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
@@ -213,7 +172,7 @@ PlayersT:OnChanged(function()
                     h.OutlineTransparency = 0.5
                 end
             end
-        task.wait(5)
+        task.wait(0.5)
         until Options.Players.Value == false
     else
         for i,v in pairs(Players:GetChildren()) do

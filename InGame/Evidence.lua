@@ -1,4 +1,3 @@
-Tabs.Evidence:AddSection("Detect Evidence")
 
 local function PutEvidence(evidence)
     local gui = plr.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes[evidence].Box
@@ -8,60 +7,6 @@ local function PutEvidence(evidence)
         end
     end
 end
-
-local emf = Tabs.Evidence:AddToggle("EMF", {Title = "Auto Detect EMF 5", Default = false })
-
-local writing = Tabs.Evidence:AddToggle("Writing", {Title = "Auto Detect Ghost Writing", Default = false })
-
-local orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", Default = false })
-
-local fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
-
-local sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box \n (Must be in the ghost room and Spirit Box must be inside the room turned on)", Default = false })
-
-local auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
-
-Tabs.Evidence:AddButton({
-    Title = "Detect Freezing Temperatures",
-    Description = "MUST START GAME TO PREVENT BREAKING",
-    Callback = function()
-        local Origin = Char.PrimaryPart.CFrame
-        Char:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)
-        task.wait(0.2)
-        if Char.Head.BreathAttachment.Breath.Enabled == true then
-            Char:SetPrimaryPartCFrame(Origin)
-
-            Window:Dialog({
-                Title = "Temperature Results",
-                Content = "Freezing Temperature was found! Would you like to enter it into the journal?",
-                Buttons = {
-                    {
-                        Title = "Yes",
-                        Callback = function()
-                            PutEvidence("Freezing Temperature")
-                        end
-                    },
-                    {
-                        Title = "No",
-                        Callback = function()end
-                    },
-                }
-            })
-        else
-            Char:SetPrimaryPartCFrame(Origin)
-            Window:Dialog({
-                Title = "Temperature Results",
-                Content = "Freezing Temperature was not found.",
-                Buttons = {
-                    {
-                        Title = "Okay",
-                        Callback = function()end
-                    },
-                }
-            })
-        end
-    end
-})
 
 local msgs = {}
 msgs[1] = "Are you there?"
@@ -202,10 +147,3 @@ fp:OnChanged(function()
     until not Options.Fingerprints.Value
 end)
 
-Tabs.Evidence:AddSection("Objectives")
-local a = workspace.Van.Objectives.SurfaceGui.Frame.Objectives
-
-Tabs.Evidence:AddParagraph({
-    Title = "Objectives",
-    Content = a.Identify.Text .. '\n' .. a['1'].Text .. '\n' .. a['2'].Text .. '\n' .. a['3'].Text
-})
