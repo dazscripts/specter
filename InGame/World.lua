@@ -9,9 +9,29 @@ forcelights:OnChanged(function()
                 if a == "Spam" then
                     event:FireServer(v)
                 elseif a == "Force All Off" then
-                    if v:GetAttribute("On") == true then event:FireServer(v) end
+                    if v:GetAttribute("On") == true then 
+                        if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
+                            local k = Char.PrimaryPart.CFrame
+                            Char:SetPrimaryPartCFrame(v.On.CFrame * CFrame.new(0,0,-3))
+                            task.wait(0.1)
+                            event:FireServer(v) 
+                            Char:SetPrimaryPartCFrame(k)
+                        else
+                            event:FireServer(v) 
+                        end
+                    end 
                 elseif a == "Force All On" then
-                    if v:GetAttribute("On") == false then event:FireServer(v) end
+                    if v:GetAttribute("On") == false then
+                        if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
+                            local k = Char.PrimaryPart.CFrame
+                            Char:SetPrimaryPartCFrame(v.On.CFrame * CFrame.new(0,0,-3))
+                            task.wait(0.1)
+                            event:FireServer(v) 
+                            Char:SetPrimaryPartCFrame(k)
+                        else
+                            event:FireServer(v) 
+                        end
+                    end
                 end
             end
         end)
@@ -111,7 +131,7 @@ pathtoggle:OnChanged(function()
     if Options.paths.Value == false or not Options.path.Value then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-        repeat task.wait() until Dropdown2.Value ~= nil
+        repeat task.wait() until Options.path.Value ~= nil
         local endPosition = PathOptions[Dropdown2.Value].Position
         
         local path = PathfindingService:CreatePath(agentParameters)

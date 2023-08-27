@@ -14,7 +14,7 @@ Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
     Home = Window:AddTab({ Title = "Home", Icon = "scroll" }),
-    Main = Window:AddTab({ Title = "Main", Icon = "code" }),
+    Main = Window:AddTab({ Title = "Main", Icon = "folder-cog" }),
     World = Window:AddTab({ Title = "World", Icon = "globe" }),
     Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Evidence = Window:AddTab({ Title = "Evidence", Icon = "book" }),
@@ -27,7 +27,6 @@ Options = Fluent.Options
 Tabs.Main:AddInput("message", {Title = "Chat Message",Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",Placeholder = "Message", Numeric = false,Finished = false, Callback = function(Value)end})
 spamchat = Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
 breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
-locator = Tabs.Main:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
 Tabs.World:AddDropdown("LightMode", {Title = "Select Lights Mode",Values = {"Spam", "Force All On", "Force All Off"},Multi = false, Default = 1,})
 forcelights = Tabs.World:AddToggle("forcelights", {Title = "Force Lights", Default = false })
 Doors = Tabs.World:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
@@ -77,6 +76,11 @@ Van = Tabs.Visuals:AddToggle("Van", {Title = "Van ESP", Default = false })
 
 Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables ESP", Default = false })
 
+Tabs.Visuals:AddSection("Script Customizations")
+
+locator = Tabs.Settings:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
+ghostnotifs = Tabs.Settings:AddToggle("ghostnotifs", {Title = "Ghost Hunting Notification", Default = false })
+objecttp = Tabs.Settings:AddToggle("objecttp", {Title = "Use Teleports For Lights/Doors", Default = false })
 
 -- // PAGES \\ --
 
