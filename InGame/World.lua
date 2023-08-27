@@ -82,6 +82,7 @@ ZoneDropdown:OnChanged(function()
 end)
 
 RoomTeleports:OnChanged(function()
+    if Options.Room.Value == nil then return end
     local a = workspace.Map.Rooms:FindFirstChild(Options.Room.Value)
     if not a then return end
     Char:SetPrimaryPartCFrame(a.Hitbox,CFrame)
