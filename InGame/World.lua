@@ -1,23 +1,16 @@
-local Dropdown = Tabs.World:AddDropdown("Lights", {
-    Title = "Select Lights Mode",
-    Values = {"Spam", "Force All On", "Force All Off"},
-    Multi = false,
-    Default = 1,
-})
-
-
 local event = events.Lightswitch
 
 forcelights:OnChanged(function()
     if Options.forcelights.Value == false then return end
     repeat
         task.spawn(function()
+            local a = Options.LightMode.Value
             for i,v in pairs(workspace:WaitForChild("Map"):WaitForChild("Lightswitches"):GetChildren()) do
-                if Dropdown.Value == "Spam" then
+                if a == "Spam" then
                     event:FireServer(v)
-                elseif Dropdown.Value == "Force All Off" then
+                elseif a == "Force All Off" then
                     if v:GetAttribute("On") == true then event:FireServer(v) end
-                elseif Dropdown.Value == "Force All On" then
+                elseif a == "Force All On" then
                     if v:GetAttribute("On") == false then event:FireServer(v) end
                 end
             end
@@ -89,7 +82,7 @@ ZoneDropdown:OnChanged(function()
 end)
 
 RoomTeleports:OnChanged(function()
-    local a = workspace.Map.Rooms:FindFirstChild("Options.Room.Value")
+    local a = workspace.Map.Rooms:FindFirstChild(Options.Room.Value)
     if not a then return end
     Char:SetPrimaryPartCFrame(a.Hitbox,CFrame)
 end)

@@ -28,7 +28,7 @@ Tabs.Main:AddInput("message", {Title = "Chat Message",Default = "Where are you? 
 spamchat = Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
 breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
 locator = Tabs.Main:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
-
+Tabs.World:AddDropdown("LightMode", {Title = "Select Lights Mode",Values = {"Spam", "Force All On", "Force All Off"},Multi = false, Default = 1,})
 forcelights = Tabs.World:AddToggle("forcelights", {Title = "Force Lights", Default = false })
 Doors = Tabs.World:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
 Tabs.World:AddSection("Teleports")
@@ -40,7 +40,6 @@ for i,v in pairs(workspace.Map.Rooms:GetChildren()) do
 end
 
 RoomTeleports = Tabs.World:AddDropdown("Room", {Title = "Room Teleport",Values = AllRooms,Multi = false,Default = nil,})
-
 Tabs.World:AddSection("Paths [REQUIRES REMOVE ALL DOORS]")
 Tabs.World:AddParagraph({Title = "Pathfinding Info",Content = "Shows a path to specified object when available"})
 Tabs.World:AddDropdown("path", {Title = "Destination",Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},Multi = false,Default = nil,})
@@ -53,7 +52,7 @@ orbs = Tabs.Evidence:AddToggle("Orbs", {Title = "Auto Detect Ghost Orbs", Defaul
 fp = Tabs.Evidence:AddToggle("Fingerprints", {Title = "Auto Detect Fingerprints", Default = false })
 sb = Tabs.Evidence:AddToggle("SpiritBox", {Title = "Force Spirit Box \n (Must be in the ghost room and Spirit Box must be inside the room turned on)", Default = false })
 auto = Tabs.Evidence:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
-Tabs.Evidence:AddButton({Title = "Detect Freezing Temperatures",Description = "MUST START GAME TO PREVENT BREAKING",Callback = function()local Origin = Char.PrimaryPart.CFrameChar:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)task.wait(0.2)if Char.Head.BreathAttachment.Breath.Enabled == true thenChar:SetPrimaryPartCFrame(Origin)Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was found! Would you like to enter it into the journal?",Buttons = {{Title = "Yes",Callback = function()PutEvidence("Freezing Temperature")end},{Title = "No",Callback = function()end},}})elseChar:SetPrimaryPartCFrame(Origin)Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was not found.",Buttons = {{Title = "Okay",Callback = function()end},}})endend})
+Tabs.Evidence:AddButton({Title = "Detect Freezing Temperatures",Description = "MUST START GAME TO PREVENT BREAKING",Callback = function()local Origin = Char.PrimaryPart.CFrameChar:SetPrimaryPartCFrame(workspace.emfpart2.CFrame)task.wait(0.2)if Char.Head.BreathAttachment.Breath.Enabled == true then Char:SetPrimaryPartCFrame(Origin) Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was found! Would you like to enter it into the journal?",Buttons = {{Title = "Yes", Callback = function()PutEvidence("Freezing Temperature")end},{Title = "No",Callback = function()end},}})elseChar:SetPrimaryPartCFrame(Origin)Window:Dialog({Title = "Temperature Results",Content = "Freezing Temperature was not found.",Buttons = {{Title = "Okay",Callback = function()end},}})end end})
 Tabs.Evidence:AddSection("Objectives")
 local ObjectivePath = workspace.Van.Objectives.SurfaceGui.Frame.Objectives
 Tabs.Evidence:AddParagraph({Title = "Objectives",Content = ObjectivePath.Identify.Text .. '\n' .. ObjectivePath['1'].Text .. '\n' .. ObjectivePath['2'].Text .. '\n' .. ObjectivePath['3'].Text})
