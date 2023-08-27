@@ -174,6 +174,6 @@ task.spawn(function()
     PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox
     PathOptions['Van'] = workspace.Van.VanSpawn
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
-    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object").Base
+    PathOptions['Cursed Object'] = workspace.Map:WaitForChild("cursed_object").PrimaryPart
     PathOptions['Bone'] = workspace.Map.Bone
 end)

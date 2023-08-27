@@ -16,11 +16,13 @@ local Input = Tabs.Visuals:AddInput("xray", {
     Finished = true, -- Only calls callback when you press enter
     Callback = function(Value)
         for i,v in pairs(workspace.Map:GetDescendants()) do
-            if not v.Transparency then print("no transparency detected") else
-                if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end
-                if Value == 0 then v.Transparency = v:GetAttribute("OriginalTransparency")
-                else v.Transparency = Value end
-            end
+            pcall(function()
+                if v.Transparency == nil then print("no transparency detected") else
+                    if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end
+                    if Value == 0 then v.Transparency = v:GetAttribute("OriginalTransparency")
+                    else v.Transparency = Value end
+                end
+            end)
         end
     end
 })
