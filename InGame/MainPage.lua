@@ -52,5 +52,8 @@ local Pickup = Tabs.Main:AddDropdown("Grab", {
 })
 local module = require(plr.PlayerScripts.ClientMain.Modules.PromptManager)
 Pickup:OnChanged(function()
-    module.HandlePrompt(workspace.Equipment:FindFirstChild(Options.Grab.Value).Main.PickupPrompt, plr)
+	local a = Options.Grab.Value
+	if a ~= nil and workspace.Equipment:FindFirstChild(a) then
+	    module.HandlePrompt(workspace.Equipment:FindFirstChild(a).Main.PickupPrompt, plr)
+	end
 end)
