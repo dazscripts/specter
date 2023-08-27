@@ -11,7 +11,6 @@ local equipment = workspace.Equipment
 
 local elec = game:GetService("Workspace").Map.EventObjects.Electronics
 local sinks = game:GetService("Workspace").Map.EventObjects.Sinks
-local cursed = game:GetService("Workspace").Map.cursed_object
 Interactables:OnChanged(function()
     if Options.Interactables.Value == true then
         repeat 
@@ -39,7 +38,7 @@ Interactables:OnChanged(function()
                     h.OutlineTransparency = 1
                 end
             end
-            if not cursed:FindFirstChild("Highlight") then
+            if not workspace.Map.cursed_object:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
                 h.Adornee = v

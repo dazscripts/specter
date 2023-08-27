@@ -176,3 +176,9 @@ task.spawn(function()
     PathOptions['Cursed Object'] = item(workspace.Map:FindFirstChild("cursed_object").PrimaryPart)
     PathOptions['Bone'] = workspace.Map.Bone
 end)
+local a = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.ClientMain)
+
+local old 
+old = hookfunction(a.toggleDeadVisible, function()
+	return old(false)
+end)
