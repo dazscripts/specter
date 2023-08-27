@@ -16,7 +16,7 @@ breakghost:OnChanged(function()
     if Options.breakghost.Value == false then return end
     local origin = Char.PrimaryPart.CFrame
     task.wait(0.1)
-    repeat task.wait() Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(math.random(2,3),2.1,4)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == false or Options.breakghost.Value == false
+    repeat task.wait() Char:SetPrimaryPartCFrame(workspace.Ghost.PrimaryPart.CFrame * CFrame.new(math.random(3,4),2.2,5)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == false or Options.breakghost.Value == false
     Char:SetPrimaryPartCFrame(origin)
     Options.breakghost:SetValue(false)
     task.wait(0.1)
