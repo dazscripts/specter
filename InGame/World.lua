@@ -163,9 +163,10 @@ pathtoggle:OnChanged(function()
                 part.Parent = Workspace
 				part.Shape = 'Ball'
                 task.spawn(function()
-                    task.wait(0.5)
+                    task.wait(0.7)
                     part:Destroy()
                 end)
+                task.wait(0.03)
             end
         end
     until Options.paths.Value == false
