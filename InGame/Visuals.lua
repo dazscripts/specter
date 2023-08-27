@@ -19,8 +19,8 @@ local Input = Tabs.Visuals:AddInput("xray", {
             pcall(function()
                 if v.Transparency == nil then print("no transparency detected") else
                     if not v:GetAttribute("OriginalTransparency") and v.Transparency ~= 1 then v:SetAttribute("OriginalTransparency", v.Transparency) end
-                    if Value == 0 then v.Transparency = v:GetAttribute("OriginalTransparency")
-                    else v.Transparency = Value end
+                    if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")
+                    elseif v.Transparency ~= 1 then v.Transparency = Value end
                 end
             end)
         end
