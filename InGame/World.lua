@@ -107,7 +107,7 @@ RoomTeleports:OnChanged(function()
     if Options.Room.Value == nil then return end
     local a = workspace.Map.Rooms:FindFirstChild(Options.Room.Value)
     if not a then return end
-    Char:SetPrimaryPartCFrame(a.Hitbox,CFrame)
+    Char:SetPrimaryPartCFrame(a.Hitbox.CFrame)
 end)
 
 local PathfindingService = game:GetService("PathfindingService")
@@ -130,7 +130,7 @@ local agentParameters = {
 }
 
 pathtoggle:OnChanged(function()
-    if Options.paths.Value == false or not Options.path.Value then return end
+    if Options.Paths.Value == false or not Options.path.Value then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
         repeat task.wait() until Options.path.Value ~= nil
@@ -175,10 +175,4 @@ task.spawn(function()
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
     PathOptions['Cursed Object'] = item(workspace.Map:FindFirstChild("cursed_object").PrimaryPart)
     PathOptions['Bone'] = workspace.Map.Bone
-end)
-local a = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.ClientMain)
-
-local old 
-old = hookfunction(a.toggleDeadVisible, function()
-	return old(false)
 end)

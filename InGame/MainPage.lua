@@ -6,7 +6,7 @@ local Channel = TSC.TextChannels.RBXGeneral
 spamchat:OnChanged(function()
     if Options.spamchat.Value == false then return end
     repeat
-        Channel:SendAsync(Input.Value)
+        Channel:SendAsync(Options.message.Value)
         task.wait(3)
     until Options.spamchat.Value == false
 end)

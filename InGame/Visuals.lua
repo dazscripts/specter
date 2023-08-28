@@ -20,30 +20,31 @@ Interactables:OnChanged(function()
                     h.Name = 'Highlight'
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = rgbToColor3(52, 177, 7)
+                    h.FillColor = Color3.fromRGB(52, 177, 7)
                     h.Parent = v.Base
                     h.FillTransparency = 0.4
                     h.OutlineTransparency = 1
                 end
             end
             for i,v in pairs(sinks:GetChildren()) do
+                v.Transparency = 0
                 if not v:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = rgbToColor3(52, 177, 7)
+                    h.FillColor = Color3.fromRGB(52, 177, 7)
                     h.Parent = v
                     h.FillTransparency = 0.4
                     h.OutlineTransparency = 1
                 end
             end
-            if not workspace.Map.cursed_object:FindFirstChild("Highlight") then
+            if workspace.Map:FindFirstChild("cursed_object") and not workspace.Map:FindFirstChild("cursed_object"):FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
                 h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.FillColor = rgbToColor3(52, 177, 7)
+                h.FillColor = Color3.fromRGB(52, 177, 7)
                 h.Parent = v
                 h.FillTransparency = 0.4
                 h.OutlineTransparency = 1
@@ -61,7 +62,7 @@ Interactables:OnChanged(function()
                 v:FindFirstChild("Highlight"):Destroy()
             end
         end
-        if cursed:FindFirstChild("Highlight") then
+        if workspace.Map:FindFirstChild("cursed_object") and workspace.Map:FindFirstChild("cursed_object"):FindFirstChild("Highlight") then
             cursed:FindFirstChild("Highlight"):Destroy()
         end
     end
@@ -95,7 +96,7 @@ DeadBodies:OnChanged(function()
                     h.Name = 'Highlight'
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = rgbToColor3(255, 160, 39)
+                    h.FillColor = Color3.fromRGB(255, 160, 39)
                     h.Parent = v.HumanoidRootPart
                     h.FillTransparency = 0.7
                     h.OutlineTransparency = 0.7
@@ -122,7 +123,7 @@ Items:OnChanged(function()
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                     h.Parent = v.Main
-                    h.FillColor = rgbToColor3(0, 225, 255)
+                    h.FillColor = Color3.fromRGB(0, 225, 255)
                     h.FillTransparency = 0.4
                     h.OutlineTransparency = 0
                 end
@@ -165,7 +166,7 @@ PlayersT:OnChanged(function()
                     h.Name = 'Highlight'
                     h.Adornee = v.Character
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = rgbToColor3(140, 255, 244)
+                    h.FillColor = Color3.fromRGB(140, 255, 244)
                     h.Parent = v.Character.HumanoidRootPart
                     h.FillTransparency = 0.7
                     h.OutlineTransparency = 0.5
@@ -190,7 +191,7 @@ Closets:OnChanged(function()
                 h.Name = 'Highlight'
                 h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.FillColor = rgbToColor3(0,255,0)
+                h.FillColor = Color3.fromRGB(0,255,0)
                 h.Parent = v.Area
                 h.FillTransparency = 0.5
                 h.OutlineTransparency = 1
