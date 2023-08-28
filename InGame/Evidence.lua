@@ -42,8 +42,8 @@ Options.EMF:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "EMF 5 has been detected!",
-                SubContent = "Evidence is being entered in the Journal.", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Evidence is being entered in the Journal.",
+                Duration = 5
             })
             PutEvidence("Writing")
             Options.EMF:SetValue(false)
@@ -52,7 +52,7 @@ Options.EMF:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "EMF 5 has been detected!",
-                Duration = 5 -- Set to nil to make the notification not disappear
+                Duration = 5
             })
             Options.EMF:SetValue(false)
         end
@@ -66,7 +66,7 @@ Options.Writing:OnChanged(function()
     Fluent:Notify({
         Title = "Evidence",
         Content = "Found Book.. Waiting for writing.",
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Duration = 5
     })
     repeat task.wait() until WS.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not WS.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
     if WS.Equipment:FindFirstChild("Book"):GetAttribute("Written") then
@@ -74,8 +74,8 @@ Options.Writing:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Ghost Writing has been detected!",
-                SubContent = "Evidence is being entered in the Journal.", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Evidence is being entered in the Journal.",
+                Duration = 5
             })
             PutEvidence("Writing")
             Options.Writing:SetValue(false)
@@ -83,7 +83,7 @@ Options.Writing:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Ghost Writing has been detected!",
-                Duration = 5 -- Set to nil to make the notification not disappear
+                Duration = 5
             })
             Options.Writing:SetValue(false)
         end
@@ -91,7 +91,7 @@ Options.Writing:OnChanged(function()
         Fluent:Notify({
             Title = "ERROR",
             Content = "Couldnt find Book",
-            Duration = 5 -- Set to nil to make the notification not disappear
+            Duration = 5
         })
         Options.Writing:SetValue(false)
     end
@@ -105,15 +105,15 @@ Options.Orbs:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Orbs have been detected!",
-                SubContent = "Evidence is being entered in the Journal.", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Evidence is being entered in the Journal.",
+                Duration = 5
             })
             PutEvidence("Orbs")
         else
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Orbs have been detected!",
-                Duration = 5 -- Set to nil to make the notification not disappear
+                Duration = 5
             })
         end
 
@@ -130,15 +130,15 @@ Options.Fingerprints:OnChanged(function()
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Fingerprints have been detected!",
-                SubContent = "Evidence is being entered in the Journal.", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Evidence is being entered in the Journal.",
+                Duration = 5
             })
             PutEvidence("Fingerprints")
         else
             Fluent:Notify({
                 Title = "Evidence",
                 Content = "Fingerprints have been detected!",
-                Duration = 5 -- Set to nil to make the notification not disappear
+                Duration = 5
             })
         end
         Options.Fingerprints:SetValue(false)

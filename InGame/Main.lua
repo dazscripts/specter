@@ -74,10 +74,9 @@ Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder 
 
 Callback = function(Value)for i,v in pairs(WS.Map:GetDescendants()) do pcall(function()
 if v.Transparency == nil then print("no transparency detected") else
-if not v:GetAttribute("OriginalTransparency") and v.Transparency ~= 1 then v:SetAttribute("OriginalTransparency", v.Transparency) end
-if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")elseif v.Transparency ~= 1 then v.Transparency = Value end end end)end end})
-deadplayers     = Tabs.Visuals:AddToggle("deadplayers", {Title = "Make Dead Players Visible", Default = false })
-
+if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end
+if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")elseif v.Transparency ~= 1 and v:GetAttribute("OriginalTransparency") ~= 1 then v.Transparency = Value end end end)end end})
+Tabs.Visuals:AddToggle("deadplayers", {Title = "Make Dead Players Visible", Default = false })
 Tabs.Visuals:AddSection("ESP")
 
 Tabs.Visuals:AddToggle("Ghost", {Title = "Ghost ESP", Default = false })

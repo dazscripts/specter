@@ -40,6 +40,7 @@ Options.Grab:OnChanged(function()
 	    module.HandlePrompt(WS.Equipment:FindFirstChild(a).Main.PickupPrompt, plr)
         Options.Grab:SetValue(nil)
     elseif a ~= nil and not WS.Equipment:FindFirstChild(a) then
-        Options.Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
+        Options.Grab:SetValue(nil)
+        Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
 	end
 end)
