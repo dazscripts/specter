@@ -21,12 +21,3 @@ ghostnotifs:OnChanged(function()
         if notifEvent ~= nil then notifEvent:Disconnect() end
     end
 end)
-
-local old 
-old = hookfunction(Client.toggleDeadVisible, function(bool)
-    if Options.deadplayers.Value == true then
-        return old(true)
-    else
-        return old(bool)
-    end
-end)

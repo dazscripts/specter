@@ -210,3 +210,7 @@ Closets:OnChanged(function()
         end
     end
 end)
+deadplayers:OnChanged(function()
+    if not Options.deadplayers.Value then return end
+    repeat Client.toggleDeadVisible(true) task.wait() until not Options.deadplayers.Value
+end)
