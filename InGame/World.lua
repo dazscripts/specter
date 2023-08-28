@@ -1,6 +1,6 @@
 local event = events.Lightswitch
 
-forcelights:OnChanged(function()
+Options.forcelights:OnChanged(function()
     if Options.forcelights.Value == false then return end
     repeat
             local a = Options.LightMode.Value
@@ -42,7 +42,7 @@ forcelights:OnChanged(function()
 end)
 
 
-Doors:OnChanged(function()
+Options.Doors:OnChanged(function()
     if Options.Doors.Value == true then
         Instance.new("Folder",rep).Name = 'Doors'
 
@@ -66,7 +66,7 @@ end)
 
 local PathOptions = {}
 
-ZoneDropdown:OnChanged(function()
+Options.zone:OnChanged(function()
     local a = Options.zone.Value
     if a == 'Ghost Room' then
         if not WS:FindFirstChild("emfpart2") then
@@ -103,7 +103,7 @@ ZoneDropdown:OnChanged(function()
     end
 end)
 
-RoomTeleports:OnChanged(function()
+Options.Room:OnChanged(function()
     if Options.Room.Value == nil then return end
     local a = WS.Map.Rooms:FindFirstChild(Options.Room.Value)
     if not a then return end
@@ -120,7 +120,7 @@ local agentParameters = {
     MaxSlope = 45,
 }
 
-pathtoggle:OnChanged(function()
+Options.paths:OnChanged(function()
     if Options.paths.Value == false or not Options.path.Value then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position

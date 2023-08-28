@@ -1,4 +1,4 @@
-FullBright:OnChanged(function()
+Options.FullBright:OnChanged(function()
     if Options.FullBright.Value == false then return end
     game.Lighting:SetAttribute("OriginalExposure", game.Lighting.ExposureCompensation)
     if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting.Atmosphere:SetAttribute("OriginalHaze", game.Lighting.Atmosphere.Haze) end
@@ -38,7 +38,7 @@ local function UpdateHighlight(v)
     end
 end
 
-Interactables:OnChanged(function()
+Options.Interactables:OnChanged(function()
     if Options.Interactables.Value == true then
 
         repeat
@@ -78,7 +78,7 @@ Interactables:OnChanged(function()
     end
 end)
 
-Van:OnChanged(function()
+Options.Van:OnChanged(function()
     if Options.Van.Value == true then
         if not WS.Van:FindFirstChild("Highlight") then
             local h = Instance.new("Highlight")
@@ -96,7 +96,7 @@ Van:OnChanged(function()
     end
 end)
 
-VanColor:OnChanged(function()
+Options.VanColor:OnChanged(function()
     if WS.Van:FindFirstChild("Highlight") then
         WS.Van:FindFirstChild("Highlight").FillColor = Options.VanColor.Value
         WS.Van:FindFirstChild("Highlight").FillTransparency = Options.VanColor.Transparency
@@ -104,7 +104,7 @@ VanColor:OnChanged(function()
 end)
 
 
-DeadBodies:OnChanged(function()
+Options.Body:OnChanged(function()
     if Options.Body.Value == true then
         repeat 
             for i,v in pairs(WS.Bodies:GetChildren()) do
@@ -133,7 +133,7 @@ DeadBodies:OnChanged(function()
     end
 end)
 
-Items:OnChanged(function()
+Options.Items:OnChanged(function()
     if Options.Items.Value == true then
         repeat
             for i,v in pairs(WS.Equipment:GetChildren()) do
@@ -162,7 +162,7 @@ Items:OnChanged(function()
     end
 end)
 
-Ghost:OnChanged(function()
+Options.Ghost:OnChanged(function()
     if Options.Ghost.Value == true then
         local h = Instance.new("Highlight")
         h.Name = 'Highlight'
@@ -179,14 +179,14 @@ Ghost:OnChanged(function()
     end
 end)
 
-GhostColor:OnChanged(function()
+Options.GhostColor:OnChanged(function()
     if WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
         WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillColor = Options.GhostColor.Value
         WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillTransparency = Options.GhostColor.Transparency
     end
 end)
 
-PlayersT:OnChanged(function()
+Options.Players:OnChanged(function()
     if Options.Players.Value == true then
         repeat 
             for i,v in pairs(Players:GetChildren()) do
@@ -215,7 +215,7 @@ PlayersT:OnChanged(function()
     end
 end)
 
-Closets:OnChanged(function()
+Options.Closets:OnChanged(function()
     if Options.Closets.Value == true then
         for i,v in pairs(WS.Map.Closets:GetChildren()) do
             if not v.Area:FindFirstChild("Highlight") then
@@ -240,7 +240,7 @@ Closets:OnChanged(function()
         end
     end
 end)
-deadplayers:OnChanged(function()
+Options.deadplayers:OnChanged(function()
     if not Options.deadplayers.Value then return end
     repeat Client.toggleDeadVisible(true) task.wait() until not Options.deadplayers.Value
 end)

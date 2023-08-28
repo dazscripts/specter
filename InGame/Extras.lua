@@ -1,6 +1,6 @@
 local notifEvent
 
-ghostnotifs:OnChanged(function()
+Options.ghostnotifs:OnChanged(function()
     if Options.ghostnotifs.Value == true then
         notifEvent = events.Hunt.OnClientEvent:Connect(function()
             task.wait(0.3)

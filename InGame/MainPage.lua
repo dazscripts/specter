@@ -3,7 +3,7 @@
 local TSC = game:GetService("TextChatService")
 local Channel = TSC.TextChannels.RBXGeneral
 
-spamchat:OnChanged(function()
+Options.spamchat:OnChanged(function()
     if Options.spamchat.Value == false then return end
     repeat
         Channel:SendAsync(Options.message.Value)
@@ -11,7 +11,7 @@ spamchat:OnChanged(function()
     until Options.spamchat.Value == false
 end)
 
-breakghost:OnChanged(function()
+Options.breakghost:OnChanged(function()
     repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.breakghost.Value == false
     if Options.breakghost.Value == false then return end
     local origin = Char.PrimaryPart.CFrame
@@ -24,7 +24,7 @@ breakghost:OnChanged(function()
 end)
 
 local WaypointRemote = events.Waypoint
-locator:OnChanged(function()
+Options.locator:OnChanged(function()
     repeat task.wait() until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true or Options.locator.Value == false
     if Options.locator.Value == false then return end
     repeat task.wait() WaypointRemote:FireServer(WS.Ghost.HumanoidRootPart.Position) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == false or Options.locator.Value == false
@@ -34,12 +34,12 @@ locator:OnChanged(function()
 end)
 
 local module = require(plr.PlayerScripts.ClientMain.Modules.PromptManager)
-Pickup:OnChanged(function()
+Options.Pickup:OnChanged(function()
 	local a = Options.Grab.Value
 	if a ~= nil and WS.Equipment:FindFirstChild(a) then
 	    module.HandlePrompt(WS.Equipment:FindFirstChild(a).Main.PickupPrompt, plr)
-        Pickup:SetValue(nil)
+        Options.Pickup:SetValue(nil)
     elseif a ~= nil and not WS.Equipment:FindFirstChild(a) then
-        Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
+        Options.Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
 	end
 end)

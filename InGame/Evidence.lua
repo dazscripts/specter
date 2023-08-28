@@ -23,7 +23,7 @@ msgs[11] = "What do you want?"
 
 local remote = events.SimulateChatEvent
 
-sb:OnChanged(function()
+Options.SpiritBox:OnChanged(function()
     if not Options.SpiritBox.Value then return end
     repeat
         task.spawn(function()
@@ -35,7 +35,7 @@ sb:OnChanged(function()
     until not Options.SpiritBox.Value
 end)
 
-emf:OnChanged(function()
+Options.EMF:OnChanged(function()
     if not Options.EMF.Value then return end
     repeat if WS:FindFirstChild("emfpart5") then
         if Options.auto.Value then
@@ -59,7 +59,7 @@ emf:OnChanged(function()
     end task.wait() until not Options.EMF.Value
 end)
 
-writing:OnChanged(function()
+Options.Writing:OnChanged(function()
     if not Options.Writing.Value then return end
     repeat task.wait() until WS.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
     if not Options.Writing.Value then return end
@@ -98,7 +98,7 @@ writing:OnChanged(function()
 end)
 
 
-orbs:OnChanged(function()
+Options.Orbs:OnChanged(function()
     if not Options.Orbs.Value then return end
     repeat if #WS.Orbs:GetChildren() >= 1 then
         if Options.auto.Value then
@@ -123,7 +123,7 @@ orbs:OnChanged(function()
     until not Options.Orbs.Value
 end)
 
-fp:OnChanged(function()
+Options.Fingerprints:OnChanged(function()
     if not Options.Fingerprints.Value then return end
     repeat if #WS.Fingerprints:GetChildren() >= 1 then
         if Options.auto.Value then
