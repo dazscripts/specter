@@ -22,6 +22,15 @@ Tabs = {
 
 Options = Fluent.Options
 
+function PutEvidence(evidence)
+    local gui = plr.PlayerGui.Gui.Journal.Content.Evidence.EvidenceCheckboxes[evidence].Box
+    if not gui:FindFirstChild("Selected").Visible then
+        for i,v in pairs(getconnections(gui.Activated)) do
+            v:Fire()
+        end
+    end
+end
+
 Tabs.Main:AddInput("message", {Title = "Chat Message",Default = "Where are you? Are you here? How old are you? Can you write in the book? Can you leave a fingerprint? Are you there? Are you a boy? Are you a girl? Show us a sign. Can you turn on the lights?",Placeholder = "Message", Numeric = false,Finished = false, Callback = function(Value)end})
 spamchat = Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
 breakghost = Tabs.Main:AddToggle("breakghost", {Title = "Break Ghost Hunting (Godmode)", Default = false })
@@ -99,7 +108,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GU
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Visuals.lua"))()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Extra.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Extras.lua"))()
 
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)

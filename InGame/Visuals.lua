@@ -6,7 +6,7 @@ FullBright:OnChanged(function()
     if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting:FindFirstChild("Atmosphere").Haze = 0 end
     until Options.FullBright.Value == false
     game.Lighting.ExposureCompensation = game.Lighting:GetAttribute("OriginalExposure")
-    if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting.Atmosphere.Haze = game.Lighting.Atmosphere:GetAttribute("OriginalHaze")
+    if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting.Atmosphere.Haze = game.Lighting.Atmosphere:GetAttribute("OriginalHaze") end
 end)
 
 
