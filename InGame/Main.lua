@@ -68,14 +68,10 @@ Tabs.Evidence:AddSection("Objectives")
 Tabs.Evidence:AddParagraph({Title = "Objectives",Content = ObjectivePath.Identify.Text .. '\n' .. ObjectivePath['1'].Text .. '\n' .. ObjectivePath['2'].Text .. '\n' .. ObjectivePath['3'].Text})
 
 Tabs.Visuals:AddSection("World")
-FullBright      = Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
+Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
 
-Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder = "Opacity",Numeric = true,Finished = true,
+Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder = "Opacity",Numeric = true,Finished = true, Callback = function(Value) for i,v in pairs(Workspace.Map:GetDescendants()) do pcall(function() if v.Transparency == nil then print("no transparency detected") else if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency") elseif v.Transparency ~= 1 and v:GetAttribute("OriginalTransparency") ~= 1 then v.Transparency = Value end end end) end end})
 
-Callback = function(Value)for i,v in pairs(WS.Map:GetDescendants()) do pcall(function()
-if v.Transparency == nil then print("no transparency detected") else
-if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end
-if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")elseif v.Transparency ~= 1 and v:GetAttribute("OriginalTransparency") ~= 1 then v.Transparency = Value end end end)end end})
 Tabs.Visuals:AddToggle("deadplayers", {Title = "Make Dead Players Visible", Default = false })
 Tabs.Visuals:AddSection("ESP")
 
