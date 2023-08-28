@@ -37,7 +37,7 @@ end)
 
 emf:OnChanged(function()
     if not Options.EMF.Value then return end
-    repeat if workspace:FindFirstChild("emfpart5") then
+    repeat if WS:FindFirstChild("emfpart5") then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",
@@ -61,15 +61,15 @@ end)
 
 writing:OnChanged(function()
     if not Options.Writing.Value then return end
-    repeat task.wait() until workspace.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
+    repeat task.wait() until WS.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
     if not Options.Writing.Value then return end
     Fluent:Notify({
         Title = "Evidence",
         Content = "Found Book.. Waiting for writing.",
         Duration = 5 -- Set to nil to make the notification not disappear
     })
-    repeat task.wait() until workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not workspace.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
-    if workspace.Equipment:FindFirstChild("Book"):GetAttribute("Written") then
+    repeat task.wait() until WS.Equipment:FindFirstChild("Book"):GetAttribute("Written") or not WS.Equipment:FindFirstChild("Book") or Options.Writing.Value == false
+    if WS.Equipment:FindFirstChild("Book"):GetAttribute("Written") then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",
@@ -87,7 +87,7 @@ writing:OnChanged(function()
             })
             Options.Writing:SetValue(false)
         end
-    elseif not workspace.Equipment:FindFirstChild("Book") then
+    elseif not WS.Equipment:FindFirstChild("Book") then
         Fluent:Notify({
             Title = "ERROR",
             Content = "Couldnt find Book",
@@ -100,7 +100,7 @@ end)
 
 orbs:OnChanged(function()
     if not Options.Orbs.Value then return end
-    repeat if #workspace.Orbs:GetChildren() >= 1 then
+    repeat if #WS.Orbs:GetChildren() >= 1 then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",
@@ -125,7 +125,7 @@ end)
 
 fp:OnChanged(function()
     if not Options.Fingerprints.Value then return end
-    repeat if #workspace.Fingerprints:GetChildren() >= 1 then
+    repeat if #WS.Fingerprints:GetChildren() >= 1 then
         if Options.auto.Value then
             Fluent:Notify({
                 Title = "Evidence",

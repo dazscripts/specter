@@ -10,14 +10,14 @@ FullBright:OnChanged(function()
 end)
 
 
-local doors = workspace.Map.Doors
-local closets = workspace.Map.Closets
-local equipment = workspace.Equipment
+local doors = WS.Map.Doors
+local closets = WS.Map.Closets
+local equipment = WS.Equipment
 
 local InteractableTable = {
-    elec = workspace.Map.EventObjects.Electronics:GetChildren(),
-    sinks = workspace.Map.EventObjects.Sinks:GetChildren(),
-    cursed = workspace.Map:FindFirstChild("cursed_object")
+    elec = WS.Map.EventObjects.Electronics:GetChildren(),
+    sinks = WS.Map.EventObjects.Sinks:GetChildren(),
+    cursed = WS.Map:FindFirstChild("cursed_object")
 }
 
 local function MakeHighlight(v)
@@ -33,8 +33,8 @@ end
 
 local function UpdateHighlight(v)
     if v:FindFirstChild("Highlight") then
-        v.FillTransparency = Options.InteractiblesColor.Transparency
-        v.FillColor = Options.InteractiblesColor.Value
+        v:FindFirstChild("Highlight").FillTransparency = Options.InteractiblesColor.Transparency
+        v:FindFirstChild("Highlight").FillColor = Options.InteractiblesColor.Value
     end
 end
 
@@ -80,26 +80,26 @@ end)
 
 Van:OnChanged(function()
     if Options.Van.Value == true then
-        if not workspace.Van:FindFirstChild("Highlight") then
+        if not WS.Van:FindFirstChild("Highlight") then
             local h = Instance.new("Highlight")
             h.Name = 'Highlight'
-            h.Adornee = workspace.Van
+            h.Adornee = WS.Van
             h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            h.Parent = workspace.Van
+            h.Parent = WS.Van
             h.FillTransparency = Options.VanColor.Transparency
             h.OutlineTransparency = 0.3  
         end
     else
-        if workspace.Van:FindFirstChild("Highlight") then
-            workspace.Van:FindFirstChild("Highlight"):Destroy()
+        if WS.Van:FindFirstChild("Highlight") then
+            WS.Van:FindFirstChild("Highlight"):Destroy()
         end
     end
 end)
 
 VanColor:OnChanged(function()
-    if workspace.Van:FindFirstChild("Highlight") then
-        workspace.Van:FindFirstChild("Highlight").FillColor = Options.VanColor.Value
-        workspace.Van:FindFirstChild("Highlight").FillTransparency = Options.VanColor.Transparency
+    if WS.Van:FindFirstChild("Highlight") then
+        WS.Van:FindFirstChild("Highlight").FillColor = Options.VanColor.Value
+        WS.Van:FindFirstChild("Highlight").FillTransparency = Options.VanColor.Transparency
     end
 end)
 
@@ -107,7 +107,7 @@ end)
 DeadBodies:OnChanged(function()
     if Options.Body.Value == true then
         repeat 
-            for i,v in pairs(workspace.Bodies:GetChildren()) do
+            for i,v in pairs(WS.Bodies:GetChildren()) do
                 if not v.HumanoidRootPart:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
@@ -125,7 +125,7 @@ DeadBodies:OnChanged(function()
         task.wait(5)
         until Options.Body.Value == false
     else
-        for i,v in pairs(workspace.Bodies:GetChildren()) do
+        for i,v in pairs(WS.Bodies:GetChildren()) do
             if v.HumanoidRootPart:FindFirstChild("Highlight") then
                 v.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
             end
@@ -136,7 +136,7 @@ end)
 Items:OnChanged(function()
     if Options.Items.Value == true then
         repeat
-            for i,v in pairs(workspace.Equipment:GetChildren()) do
+            for i,v in pairs(WS.Equipment:GetChildren()) do
                 if not v.Main:FindFirstChild("Highlight") then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
@@ -154,7 +154,7 @@ Items:OnChanged(function()
             task.wait(0.5)
         until Options.Items.Value == false
     else
-        for i,v in pairs(workspace.Equipment:GetChildren()) do
+        for i,v in pairs(WS.Equipment:GetChildren()) do
             if v.Main:FindFirstChild("Highlight") then
                 v.Main:FindFirstChild("Highlight"):Destroy()
             end
@@ -166,23 +166,23 @@ Ghost:OnChanged(function()
     if Options.Ghost.Value == true then
         local h = Instance.new("Highlight")
         h.Name = 'Highlight'
-        h.Adornee = workspace.Ghost
+        h.Adornee = WS.Ghost
         h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-        h.Parent = workspace.Ghost.HumanoidRootPart
+        h.Parent = WS.Ghost.HumanoidRootPart
         h.FillColor = Options.GhostColor.Value
         h.FillTransparency = Options.GhostColor.Transparency
         h.OutlineTransparency = 0.5
     else
-        if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
-            workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
+        if WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
+            WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight"):Destroy()
         end
     end
 end)
 
 GhostColor:OnChanged(function()
-    if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
-        workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillColor = Options.GhostColor.Value
-        workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillTransparency = Options.GhostColor.Transparency
+    if WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
+        WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillColor = Options.GhostColor.Value
+        WS.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillTransparency = Options.GhostColor.Transparency
     end
 end)
 
@@ -217,7 +217,7 @@ end)
 
 Closets:OnChanged(function()
     if Options.Closets.Value == true then
-        for i,v in pairs(workspace.Map.Closets:GetChildren()) do
+        for i,v in pairs(WS.Map.Closets:GetChildren()) do
             if not v.Area:FindFirstChild("Highlight") then
                 local h = Instance.new("Highlight")
                 h.Name = 'Highlight'
@@ -233,7 +233,7 @@ Closets:OnChanged(function()
             end
         end
     else
-        for i,v in pairs(workspace.Map.Closets:GetChildren()) do
+        for i,v in pairs(WS.Map.Closets:GetChildren()) do
             if v.Area:FindFirstChild("Highlight") then
                 v.Area:FindFirstChild("Highlight"):Destroy()
             end

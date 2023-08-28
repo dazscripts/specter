@@ -4,12 +4,12 @@ forcelights:OnChanged(function()
     if Options.forcelights.Value == false then return end
     repeat
             local a = Options.LightMode.Value
-            for i,v in pairs(workspace:WaitForChild("Map"):WaitForChild("Lightswitches"):GetChildren()) do
+            for i,v in pairs(WS:WaitForChild("Map"):WaitForChild("Lightswitches"):GetChildren()) do
                 if a == "Spam" then
                     event:FireServer(v)
                 elseif a == "Force All Off" then
                     if v:GetAttribute("On") == true then 
-                        if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
+                        if Options.objecttp.Value == true and WS.Map.Fusebox.On.Transparency == 0 then
                             local k = Char.PrimaryPart.CFrame
                             task.wait(0.1)
                             Char:SetPrimaryPartCFrame(v.Up.CFrame * CFrame.new(0,0,-3))
@@ -23,7 +23,7 @@ forcelights:OnChanged(function()
                     end 
                 elseif a == "Force All On" then
                     if v:GetAttribute("On") == false then
-                        if Options.objecttp.Value == true and workspace.Map.Fusebox.On.Transparency == 0 then
+                        if Options.objecttp.Value == true and WS.Map.Fusebox.On.Transparency == 0 then
                             local k = Char.PrimaryPart.CFrame
                             task.wait(0.1)
                             Char:SetPrimaryPartCFrame(v.Up.CFrame * CFrame.new(0,0,-3))
@@ -46,7 +46,7 @@ Doors:OnChanged(function()
     if Options.Doors.Value == true then
         Instance.new("Folder",rep).Name = 'Doors'
 
-        for i,v in pairs(workspace.Map.Doors:GetChildren()) do
+        for i,v in pairs(WS.Map.Doors:GetChildren()) do
             if not v:GetAttribute("Closet") then
                 v.Parent = rep.Doors
             end
@@ -54,7 +54,7 @@ Doors:OnChanged(function()
     else
         if rep:FindFirstChild("Doors") then
             for i,v in pairs(rep.Doors:GetChildren()) do
-                v.Parent = workspace.Map.Doors
+                v.Parent = WS.Map.Doors
             end
 
             rep.Doors:Destroy()
@@ -69,62 +69,55 @@ local PathOptions = {}
 ZoneDropdown:OnChanged(function()
     local a = Options.zone.Value
     if a == 'Ghost Room' then
-        if not workspace:FindFirstChild("emfpart2") then
+        if not WS:FindFirstChild("emfpart2") then
             Fluent:Notify({
                 Title = "Error",
                 Content = "Couldnt find Ghost room!",
-                SubContent = "Try Opening the van door?", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Try Opening the van door?",
+                Duration = 5
             }) return end
-        Char:SetPrimaryPartCFrame(workspace:FindFirstChild("emfpart2").CFrame)
+        Char:SetPrimaryPartCFrame(WS:FindFirstChild("emfpart2").CFrame)
     elseif a == 'Bone' then
-        if not workspace.Map:FindFirstChild("Bone") then
+        if not WS.Map:FindFirstChild("Bone") then
             Fluent:Notify({
                 Title = "Error",
                 Content = "Couldnt find Bone!",
-                SubContent = "Somebody may have taken the bone.", -- Optional
-                Duration = 5 -- Set to nil to make the notification not disappear
+                SubContent = "Somebody may have taken the bone.",
+                Duration = 5
             })
             return end
-        Char:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("Bone").CFrame)
+        Char:SetPrimaryPartCFrame(WS.Map:FindFirstChild("Bone").CFrame)
     elseif a == 'Cursed Object' then
-        if not workspace.Map:FindFirstChild("cursed_object") then
+        if not WS.Map:FindFirstChild("cursed_object") then
             Fluent:Notify({
                 Title = "Error",
                 Content = "Couldnt find Cursed Object!",
-                Duration = 5 -- Set to nil to make the notification not disappear
+                Duration = 5
             })
             return end
-        Char:SetPrimaryPartCFrame(workspace.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
+        Char:SetPrimaryPartCFrame(WS.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
     elseif a == 'Fusebox' then
-        Char:SetPrimaryPartCFrame(workspace.Map.Fusebox.Fusebox.CFrame * CFrame.new(0,0,-3))
+        Char:SetPrimaryPartCFrame(WS.Map.Fusebox.Fusebox.CFrame * CFrame.new(0,0,-3))
     elseif a == 'Van' then
-        Char:SetPrimaryPartCFrame(workspace.Van.Spawn.CFrame)
+        Char:SetPrimaryPartCFrame(WS.Van.Spawn.CFrame)
     end
 end)
 
 RoomTeleports:OnChanged(function()
     if Options.Room.Value == nil then return end
-    local a = workspace.Map.Rooms:FindFirstChild(Options.Room.Value)
+    local a = WS.Map.Rooms:FindFirstChild(Options.Room.Value)
     if not a then return end
     Char:SetPrimaryPartCFrame(a.Hitbox.CFrame)
 end)
 
 local PathfindingService = game:GetService("PathfindingService")
 
--- Your agent parameters
-local agentRadius = 2
-local agentHeight = 5
-local agentCanJump = true
-local agentJumpHeight = 10
-local agentMaxSlope = 45
-
 local agentParameters = {
-    Radius = agentRadius,
-    Height = agentHeight,
-    CanJump = agentCanJump,
-    JumpHeight = agentJumpHeight,
-    MaxSlope = agentMaxSlope,
+    Radius = 2,
+    Height = 5,
+    CanJump = true,
+    JumpHeight = 10,
+    MaxSlope = 45,
 }
 
 pathtoggle:OnChanged(function()
@@ -148,7 +141,7 @@ pathtoggle:OnChanged(function()
                 part.Position = waypoint.Position
                 part.Anchored = true
                 part.CanCollide = false
-                part.Parent = Workspace
+                part.Parent = WS
 				part.Shape = 'Ball'
                 task.spawn(function()
                     task.wait(0.7)
@@ -168,9 +161,9 @@ local function item(v)
 end
 
 task.spawn(function()
-    PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox
-    PathOptions['Van'] = workspace.Van.VanSpawn
-    PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
-	if workspace.Map:FindFirstChild("cursed_object") then PathOptions['Cursed Object'] = workspace.Map:FindFirstChild("cursed_object").PrimaryPart end
-    PathOptions['Bone'] = workspace.Map.Bone
+    PathOptions['Fusebox'] = WS.Map.Fusebox.Fusebox
+    PathOptions['Van'] = WS.Van.VanSpawn
+    PathOptions['Ghost Room'] = WS:WaitForChild("emfpart2")
+	if WS.Map:FindFirstChild("cursed_object") then PathOptions['Cursed Object'] = WS.Map:FindFirstChild("cursed_object").PrimaryPart end
+    PathOptions['Bone'] = WS.Map.Bone
 end)

@@ -18,19 +18,19 @@ Tabs.Player:AddSlider("FOV", {
     Max = 120,
     Rounding = 0,
     Callback = function(Value)
-        workspace.CurrentCamera.FieldOfView = Value
+        WS.CurrentCamera.FieldOfView = Value
     end
 })
 
 Tabs.Player:AddSlider("Gravity", {
     Title = "Gravity",
-    Description = "Change workspace Gravity",
+    Description = "Change WS Gravity",
     Default = 196.1999969482422,
     Min = 0,
     Max = 300,
     Rounding = 1,
     Callback = function(Value)
-        workspace.Gravity = Value
+        WS.Gravity = Value
     end
 })
 
