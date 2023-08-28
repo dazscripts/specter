@@ -128,9 +128,11 @@ Items:OnChanged(function()
                     h.Adornee = v
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
                     h.Parent = v.Main
-                    h.FillColor = Color3.fromRGB(0, 225, 255)
+                    h.FillColor = Options.ItemColor.Value
                     h.FillTransparency = 0.4
                     h.OutlineTransparency = 0
+                elseif v.Main:FindFirstChild("Highlight") then
+                    v.Main:FindFirstChild("Highlight").FillColor = Options.ItemColor.Value
                 end
             end
             task.wait(0.5)
@@ -151,7 +153,7 @@ Ghost:OnChanged(function()
         h.Adornee = workspace.Ghost
         h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         h.Parent = workspace.Ghost.HumanoidRootPart
-        h.FillColor = Color3.fromRGB(255,0,0)
+        h.FillColor = Options.GhostColor.Value
         h.FillTransparency = 0.7
         h.OutlineTransparency = 0.5
     else
@@ -160,21 +162,29 @@ Ghost:OnChanged(function()
         end
     end
 end)
+
+GhostColor:OnChanged(function()
+    if workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight") then
+        workspace.Ghost.HumanoidRootPart:FindFirstChild("Highlight").FillColor = Options.GhostColor.Value
+    end
+end)
+
 local client = getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.ClientMain)
 PlayersT:OnChanged(function()
     if Options.Players.Value == true then
         repeat 
             for i,v in pairs(Players:GetChildren()) do
-                client.toggleDeadVisible(true)
                 if not v.Character.HumanoidRootPart:FindFirstChild("Highlight") and v ~= plr then
                     local h = Instance.new("Highlight")
                     h.Name = 'Highlight'
                     h.Adornee = v.Character
                     h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                    h.FillColor = Color3.fromRGB(140, 255, 244)
+                    h.FillColor = Options.PlayersColor.Value
                     h.Parent = v.Character.HumanoidRootPart
                     h.FillTransparency = 0.7
                     h.OutlineTransparency = 0.5
+                elseif v.Character.HumanoidRootPart:FindFirstChild("Highlight") then
+                    v.Character.HumanoidRootPart:FindFirstChild("Highlight").FillColor = Options.PlayersColor.Value
                 end
             end
         task.wait(0.5)
@@ -196,10 +206,12 @@ Closets:OnChanged(function()
                 h.Name = 'Highlight'
                 h.Adornee = v
                 h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-                h.FillColor = Color3.fromRGB(0,255,0)
+                h.FillColor = Options.ClosetColor.Value
                 h.Parent = v.Area
                 h.FillTransparency = 0.5
                 h.OutlineTransparency = 1
+            elseif v.Area:FindFirstChild("Highlight") then
+                v.Area:FindFirstChild("Highlight").FillColor = Options.ClosetColor.Value
             end
         end
     else

@@ -20,6 +20,8 @@ Tabs = {
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
+Window:SelectTab(1)
+
 Options = Fluent.Options
 
 function PutEvidence(evidence)
@@ -92,14 +94,30 @@ ghostnotifs = Tabs.Settings:AddToggle("ghostnotifs", {Title = "Ghost Hunting Not
 
 Tabs.Settings:AddSection("ESP Colors")
 
-Tabs.Main:AddColorpicker("GhostColor", {
-    Title = "Ghost",
-    Description = "but you can change the transparency.",
-    Transparency = 0,
+Tabs.Settings:AddColorpicker("GhostColor", {
+    Title = "Ghost Color",
     Default = Color3.fromRGB(255,0,0)
 })
 
+Tabs.Settings:AddColorpicker("PlayersColor", {
+    Title = "Players Color",
+    Default = Color3.fromRGB(85, 255, 255)
+    Transparency = 0,
+})
 
+Tabs.Settings:AddColorpicker("ItemColor", {
+    Title = "Items Color",
+    Default = Color3.fromRGB(255,0,0)
+})
+
+Tabs.Settings:AddColorpicker("ClosetColor", {
+    Title = "Closets Color",
+    Default = Color3.fromRGB(255,0,0)
+})
+Tabs.Settings:AddColorpicker("VanColor", {
+    Title = "Van Color",
+    Default = Color3.fromRGB(255,0,0)
+})
 -- // PAGES \\ --
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Home.lua"))()
@@ -116,31 +134,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GU
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Extras.lua"))()
 
--- Addons:
--- SaveManager (Allows you to have a configuration system)
--- InterfaceManager (Allows you to have a interface managment system)
-
--- Hand the library over to our managers
 SaveManager:SetLibrary(Fluent)
 InterfaceManager:SetLibrary(Fluent)
-
--- Ignore keys that are used by ThemeManager.
--- (we dont want configs to save themes, do we?)
-
--- You can add indexes of elements the save manager should ignore
 SaveManager:SetIgnoreIndexes({})
 
--- use case for doing it this way:
--- a script hub could have themes in a global folder
--- and game configs in a separate folder per game
 InterfaceManager:SetFolder("SpecterGUI")
 SaveManager:SetFolder("SpecterGUI/InGame")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 SaveManager:BuildConfigSection(Tabs.Settings)
-
-
-Window:SelectTab(1)
 
 Fluent:Notify({
     Title = "NOTICE",
@@ -149,6 +151,4 @@ Fluent:Notify({
     Duration = 5 -- Set to nil to make the notification not disappear
 })
 
--- You can use the SaveManager:LoadAutoloadConfig() to load a config
--- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
