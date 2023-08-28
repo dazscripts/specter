@@ -92,6 +92,12 @@ ghostnotifs = Tabs.Settings:AddToggle("ghostnotifs", {Title = "Ghost Hunting Not
 
 Tabs.Settings:AddSection("ESP Colors")
 
+Tabs.Main:AddColorpicker("GhostColor", {
+    Title = "Ghost",
+    Description = "but you can change the transparency.",
+    Transparency = 0,
+    Default = Color3.fromRGB(255,0,0)
+})
 
 
 -- // PAGES \\ --

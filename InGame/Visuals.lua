@@ -151,7 +151,7 @@ Ghost:OnChanged(function()
         h.Adornee = workspace.Ghost
         h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         h.Parent = workspace.Ghost.HumanoidRootPart
-        h.FillColor = Color3.new(1,0,0)
+        h.FillColor = Color3.fromRGB(255,0,0)
         h.FillTransparency = 0.7
         h.OutlineTransparency = 0.5
     else

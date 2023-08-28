@@ -3,6 +3,7 @@ local notifEvent
 ghostnotifs:OnChanged(function()
     if Options.ghostnotifs.Value == true then
         notifEvent = events.Hunt.OnClientEvent:Connect(function()
+            task.wait(0.3)
             if plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == true then
                 Fluent:Notify({
                     Title = "Ghost Notifications",
