@@ -99,6 +99,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GU
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Visuals.lua"))()
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/dazscripts/specter/GUI/InGame/Extra.lua"))()
+
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
