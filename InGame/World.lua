@@ -75,7 +75,10 @@ Options.zone:OnChanged(function()
                 Content = "Couldnt find Ghost room!",
                 SubContent = "Try Opening the van door?",
                 Duration = 5
-            }) return end
+            }) 
+            Options.zone:SetValue(nil)
+            return end
+        Options.zone:SetValue(nil)
         Char:SetPrimaryPartCFrame(WS:FindFirstChild("emfpart2").CFrame)
     elseif a == 'Bone' then
         if not WS.Map:FindFirstChild("Bone") then
@@ -85,7 +88,9 @@ Options.zone:OnChanged(function()
                 SubContent = "Somebody may have taken the bone.",
                 Duration = 5
             })
+            Options.zone:SetValue(nil)
             return end
+        Options.zone:SetValue(nil)
         Char:SetPrimaryPartCFrame(WS.Map:FindFirstChild("Bone").CFrame)
     elseif a == 'Cursed Object' then
         if not WS.Map:FindFirstChild("cursed_object") then
@@ -94,20 +99,26 @@ Options.zone:OnChanged(function()
                 Content = "Couldnt find Cursed Object!",
                 Duration = 5
             })
+            Options.zone:SetValue(nil)
             return end
+        Options.zone:SetValue(nil)
         Char:SetPrimaryPartCFrame(WS.Map:FindFirstChild("cursed_object").PrimaryPart.CFrame)
     elseif a == 'Fusebox' then
         Char:SetPrimaryPartCFrame(WS.Map.Fusebox.Fusebox.CFrame * CFrame.new(0,0,-3))
+        Options.zone:SetValue(nil)
+
     elseif a == 'Van' then
         Char:SetPrimaryPartCFrame(WS.Van.Spawn.CFrame)
+        Options.zone:SetValue(nil)
     end
 end)
 
 Options.Room:OnChanged(function()
     if Options.Room.Value == nil then return end
     local a = WS.Map.Rooms:FindFirstChild(Options.Room.Value)
-    if not a then return end
+    if not a then Options.Room:SetValue(nil) return end
     Char:SetPrimaryPartCFrame(a.Hitbox.CFrame)
+    Options.Room:SetValue(nil)
 end)
 
 local PathfindingService = game:GetService("PathfindingService")

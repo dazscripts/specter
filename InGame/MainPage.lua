@@ -34,11 +34,11 @@ Options.locator:OnChanged(function()
 end)
 
 local module = require(plr.PlayerScripts.ClientMain.Modules.PromptManager)
-Options.Pickup:OnChanged(function()
+Options.Grab:OnChanged(function()
 	local a = Options.Grab.Value
 	if a ~= nil and WS.Equipment:FindFirstChild(a) then
 	    module.HandlePrompt(WS.Equipment:FindFirstChild(a).Main.PickupPrompt, plr)
-        Options.Pickup:SetValue(nil)
+        Options.Grab:SetValue(nil)
     elseif a ~= nil and not WS.Equipment:FindFirstChild(a) then
         Options.Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
 	end
