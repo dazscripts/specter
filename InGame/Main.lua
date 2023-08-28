@@ -2,7 +2,7 @@ Client = getsenv(plr.PlayerScripts.ClientMain)
 local ObjectivePath = WS.Van.Objectives.SurfaceGui.Frame.Objectives
 
 Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.1.0.2',
+    Title = 'Specter GUI 1.1.0.3',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
