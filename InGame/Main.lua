@@ -70,7 +70,21 @@ Tabs.Evidence:AddParagraph({Title = "Objectives",Content = ObjectivePath.Identif
 Tabs.Visuals:AddSection("World")
 Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
 
-Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder = "Opacity",Numeric = true,Finished = true, Callback = function(Value) for i,v in pairs(Workspace.Map:GetDescendants()) do pcall(function() if v.Transparency == nil then print("no transparency detected") else if not v:GetAttribute("OriginalTransparency") then v:SetAttribute("OriginalTransparency", v.Transparency) end if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency") elseif v.Transparency ~= 1 and v:GetAttribute("OriginalTransparency") ~= 1 then v.Transparency = Value end end end) end end})
+Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder = "Opacity",Numeric = true,Finished = true, Callback = function(Value) 
+    Value = tonumber(v)
+    for i, v in pairs(workspace.Map:GetDescendants()) do
+        if v:IsA("BasePart") or v:IsA("GuiObject") then
+            if not v:GetAttribute("OriginalTransparency") then
+                v:SetAttribute("OriginalTransparency", v.Transparency)
+            end
+            if Value == 0 and v:GetAttribute("OriginalTransparency") then
+                v.Transparency = v:GetAttribute("OriginalTransparency")
+            elseif v:GetAttribute("OriginalTransparency") ~= 1 then
+                v.Transparency = Value
+            end
+        end
+    end
+end})
 
 Tabs.Visuals:AddToggle("deadplayers", {Title = "Make Dead Players Visible", Default = false })
 Tabs.Visuals:AddSection("ESP")
