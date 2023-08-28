@@ -1,7 +1,7 @@
 Client = getsenv(plr.PlayerScripts.ClientMain)
 
 Window = Fluent:CreateWindow({
-    Title = 'Specter GUI 1.0.9.6',
+    Title = 'Specter GUI 1.0.9.9',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
@@ -96,27 +96,44 @@ Tabs.Settings:AddSection("ESP Colors")
 
 Tabs.Settings:AddColorpicker("GhostColor", {
     Title = "Ghost Color",
-    Default = Color3.fromRGB(255,0,0)
+    Default = Color3.fromRGB(255,0,0),
+    Transparency = 0.7,
 })
 
 Tabs.Settings:AddColorpicker("PlayersColor", {
     Title = "Players Color",
-    Default = Color3.fromRGB(85, 255, 255)
-    Transparency = 0,
+    Default = Color3.fromRGB(85, 255, 255),
+    Transparency = 0.7,
+})
+
+Tabs.Settings:AddColorpicker("DeadBodiesColor", {
+    Title = "Dead Bodies Color",
+    Default = Color3.fromRGB(255, 160, 39),
+    Transparency = 0.7,
 })
 
 Tabs.Settings:AddColorpicker("ItemColor", {
     Title = "Items Color",
-    Default = Color3.fromRGB(255,0,0)
+    Default = Color3.fromRGB(255, 255, 255),
+    Transparency = 0,
 })
 
 Tabs.Settings:AddColorpicker("ClosetColor", {
     Title = "Closets Color",
-    Default = Color3.fromRGB(255,0,0)
+    Default = Color3.fromRGB(170, 85, 0),
+    Transparency = 0.5,
 })
+
 Tabs.Settings:AddColorpicker("VanColor", {
     Title = "Van Color",
-    Default = Color3.fromRGB(255,0,0)
+    Default = Color3.fromRGB(85, 255, 127),
+    Transparency = 1,
+})
+
+Tabs.Settings:AddColorpicker("InteractiblesColor", {
+    Title = "Interactibles Color",
+    Default = Color3.fromRGB(52, 177, 7),
+    Transparency = 0.4,
 })
 -- // PAGES \\ --
 
