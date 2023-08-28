@@ -64,7 +64,7 @@ Doors:OnChanged(function()
 end)
 
 
-
+local PathOptions = {}
 
 ZoneDropdown:OnChanged(function()
     local a = Options.zone.Value
@@ -112,8 +112,6 @@ end)
 
 local PathfindingService = game:GetService("PathfindingService")
 
-local PathOptions = {}
-
 -- Your agent parameters
 local agentRadius = 2
 local agentHeight = 5
@@ -130,11 +128,11 @@ local agentParameters = {
 }
 
 pathtoggle:OnChanged(function()
-    if Options.Paths.Value == false or not Options.path.Value then return end
+    if Options.paths.Value == false or not Options.path.Value then return end
     repeat task.wait(0.5)
         local startPosition = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
         repeat task.wait() until Options.path.Value ~= nil
-        local endPosition = PathOptions[Dropdown2.Value].Position
+        local endPosition = PathOptions[Options.path.Value].Position
         
         local path = PathfindingService:CreatePath(agentParameters)
         
@@ -173,6 +171,6 @@ task.spawn(function()
     PathOptions['Fusebox'] = workspace.Map.Fusebox.Fusebox
     PathOptions['Van'] = workspace.Van.VanSpawn
     PathOptions['Ghost Room'] = workspace:WaitForChild("emfpart2")
-    PathOptions['Cursed Object'] = item(workspace.Map:FindFirstChild("cursed_object").PrimaryPart)
+	if workspace.Map:FindFirstChild("cursed_object") then PathOptions['Cursed Object'] = workspace.Map:FindFirstChild("cursed_object").PrimaryPart end
     PathOptions['Bone'] = workspace.Map.Bone
 end)

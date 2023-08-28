@@ -1,15 +1,13 @@
-function rgbToColor3(r, g, b)
-    return Color3.new(r/255, g/255, b/255)
-end
+Client = getsenv(plr.PlayerScripts.ClientMain)
 
 Window = Fluent:CreateWindow({
     Title = 'Specter GUI 1.0.9.6',
     SubTitle = "| InGame",
     TabWidth = 120,
     Size = UDim2.fromOffset(580, 460),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = true,
     Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+    MinimizeKey = Enum.KeyCode.LeftControl
 })
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 Tabs = {
@@ -62,6 +60,7 @@ Callback = function(Value)for i,v in pairs(workspace.Map:GetDescendants()) do pc
 if v.Transparency == nil then print("no transparency detected") else
 if not v:GetAttribute("OriginalTransparency") and v.Transparency ~= 1 then v:SetAttribute("OriginalTransparency", v.Transparency) end
 if Value == 0 and v:GetAttribute("OriginalTransparency") then v.Transparency = v:GetAttribute("OriginalTransparency")elseif v.Transparency ~= 1 then v.Transparency = Value end end end)end end})
+deadplayers = Tabs.Visuals:AddToggle("deadplayers", {Title = "Make Dead Players Visible", Default = false })
 
 Tabs.Visuals:AddSection("ESP")
 
@@ -77,10 +76,14 @@ Interactables = Tabs.Visuals:AddToggle("Interactables", {Title = "Interactables 
 
 Tabs.Settings:AddSection("Script Customizations")
 
-auto = Tabs.Settings:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = false })
+auto = Tabs.Settings:AddToggle("auto", {Title = "Auto Check Evidence in Journal when Detected", Default = true })
+objecttp = Tabs.Settings:AddToggle("objecttp", {Title = "Use Teleports For Lights/Doors", Default = false })
 locator = Tabs.Settings:AddToggle("locator", {Title = "FE Ghost Locator", Default = false })
 ghostnotifs = Tabs.Settings:AddToggle("ghostnotifs", {Title = "Ghost Hunting Notification", Default = false })
-objecttp = Tabs.Settings:AddToggle("objecttp", {Title = "Use Teleports For Lights/Doors", Default = false })
+
+Tabs.Settings:AddSection("ESP Colors")
+
+
 
 -- // PAGES \\ --
 

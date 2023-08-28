@@ -1,7 +1,12 @@
 FullBright:OnChanged(function()
     if Options.FullBright.Value == false then return end
-    repeat task.wait(0.1) game.Lighting.ExposureCompensation = 3 until Options.FullBright.Value == false
-    game.Lighting.ExposureCompensation = -1
+    game.Lighting:SetAttribute("OriginalExposure", game.Lighting.ExposureCompensation)
+    if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting.Atmosphere:SetAttribute("OriginalHaze", game.Lighting.Atmosphere.Haze) end
+    repeat task.wait(0.1) game.Lighting.ExposureCompensation = 3 
+    if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting:FindFirstChild("Atmosphere").Haze = 0 end
+    until Options.FullBright.Value == false
+    game.Lighting.ExposureCompensation = game.Lighting:GetAttribute("OriginalExposure")
+    if game.Lighting:FindFirstChild("Atmosphere") then game.Lighting.Atmosphere.Haze = game.Lighting.Atmosphere:GetAttribute("OriginalHaze")
 end)
 
 
@@ -73,9 +78,9 @@ Van:OnChanged(function()
         if not workspace.Van:FindFirstChild("Highlight") then
             local h = Instance.new("Highlight")
             h.Name = 'Highlight'
-            h.Adornee = workspace.Van:FindFirstChild("Highlight")
+            h.Adornee = workspace.Van
             h.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-            h.Parent = workspace.Van:FindFirstChild("Highlight")
+            h.Parent = workspace.Van
             h.FillTransparency = 1
             h.OutlineTransparency = 0.3  
         end

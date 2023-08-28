@@ -16,7 +16,7 @@ Tabs.Player:AddSlider("FOV", {
     Default = 70,
     Min = 0,
     Max = 120,
-    Rounding = 1,
+    Rounding = 0,
     Callback = function(Value)
         workspace.CurrentCamera.FieldOfView = Value
     end
@@ -40,10 +40,10 @@ Tabs.Player:AddSection("Character Mods")
 Tabs.Player:AddSlider("WS", {
     Title = "Walkspeed",
     Description = "Change how fast your Avatar is",
-    Default = 6,
+    Default = Char.Humanoid.WalkSpeed,
     Min = 0,
     Max = 70,
-    Rounding = 1,
+    Rounding = 0,
     Callback = function(Value)
         plr.Character.Humanoid.WalkSpeed = Value
     end
@@ -52,10 +52,10 @@ Tabs.Player:AddSlider("WS", {
 Tabs.Player:AddSlider("JP", {
     Title = "JumpPower",
     Description = "Change how high You can jump.",
-    Default = 0,
+    Default = Char.Humanoid.JumpPower,
     Min = 0,
     Max = 120,
-    Rounding = 1,
+    Rounding = 0,
     Callback = function(Value)
         plr.Character.Humanoid.JumpPower = Value
     end
