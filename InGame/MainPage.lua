@@ -16,7 +16,7 @@ Options.breakghost:OnChanged(function()
     if Options.breakghost.Value == false then return end
     local origin = Char.PrimaryPart.CFrame
     task.wait(0.1)
-    repeat task.wait() Char:SetPrimaryPartCFrame(WS.Ghost.PrimaryPart.CFrame * CFrame.new(0,-6,0)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == false or Options.breakghost.Value == false
+    repeat task.wait() Char:SetPrimaryPartCFrame(WS.Ghost.PrimaryPart.CFrame * CFrame.new(0,-8,0)) until plr.PlayerScripts.VideoFeed:GetAttribute("Hunting") == false or Options.breakghost.Value == false
     Char:SetPrimaryPartCFrame(origin)
     Options.breakghost:SetValue(false)
     task.wait(0.1)
@@ -40,7 +40,7 @@ Options.Grab:OnChanged(function()
 	    module.HandlePrompt(WS.Equipment:FindFirstChild(a).Main.PickupPrompt, plr)
         Options.Grab:SetValue(nil)
     elseif a ~= nil and not WS.Equipment:FindFirstChild(a) then
+        Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. a,SubContent = "Make sure the item is in the Workspace",Duration = 5})
         Options.Grab:SetValue(nil)
-        Fluent:Notify({Title = "Pickup Item",Content = "Couldnt find" .. Options.Grab.Value,SubContent = "Make sure the item is in the WS",Duration = 5})
 	end
 end)

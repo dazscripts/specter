@@ -70,18 +70,20 @@ Tabs.Evidence:AddParagraph({Title = "Objectives",Content = ObjectivePath.Identif
 Tabs.Visuals:AddSection("World")
 Tabs.Visuals:AddToggle("FullBright", {Title = "FullBright", Default = false })
 
-Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity",Default = "0",Placeholder = "Opacity",Numeric = true,Finished = true, Callback = function(Value) 
+Tabs.Visuals:AddInput("xray", {Title = "Xray Opacity\nLeave box empty for default",Default = "",Placeholder = "Opacity",Numeric = true,Finished = true, Callback = function(v) 
     Value = tonumber(v)
     for i, v in pairs(workspace.Map:GetDescendants()) do
         if v:IsA("BasePart") or v:IsA("GuiObject") then
             if not v:GetAttribute("OriginalTransparency") then
                 v:SetAttribute("OriginalTransparency", v.Transparency)
             end
-            if Value == 0 and v:GetAttribute("OriginalTransparency") then
-                v.Transparency = v:GetAttribute("OriginalTransparency")
-            elseif v:GetAttribute("OriginalTransparency") ~= 1 then
-                v.Transparency = Value
-            end
+            delay(0.01, function()
+                if Value == 0 or Value == nil and v:GetAttribute("OriginalTransparency") then
+                    v.Transparency = v:GetAttribute("OriginalTransparency")
+                elseif v:GetAttribute("OriginalTransparency") ~= 1 then
+                    v.Transparency = Value
+                end
+            end)
         end
     end
 end})
