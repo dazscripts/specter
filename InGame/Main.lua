@@ -39,6 +39,8 @@ Tabs.Main:AddToggle("spamchat", {Title = "Spam Chat", Default = false })
 
 Tabs.World:AddDropdown("LightMode", {Title = "Select Lights Mode",Values = {"Spam", "Force All On", "Force All Off"},Multi = false, Default = 1,})
 Tabs.World:AddToggle("forcelights", {Title = "Force Lights", Default = false })
+Tabs.World:AddDropdown("BoxMode", {Title = "Select Fusebox Mode",Values = {"Force On", "Force Off"},Multi = false, Default = 1,})
+Tabs.World:AddToggle("ForceBox", {Title = "Force Fusebox", Default = false })
 Tabs.World:AddToggle("Doors", {Title = "Remove All Doors", Default = false})
 Tabs.World:AddSection("Teleports")
 Tabs.World:AddDropdown("zone", {Title = "Zone Teleport",Values = {"Ghost Room", "Bone", "Cursed Object", "Fusebox", "Van"},Multi = false,Default = nil,})

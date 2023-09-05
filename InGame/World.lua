@@ -41,6 +41,28 @@ Options.forcelights:OnChanged(function()
     until Options.forcelights.Value == false
 end)
 
+local box = WS.Map.Fusebox
+
+local function ToggleBox()
+    box.Fusebox.CFrame = Char.Head.CFrame * CFrame.new(0,0,3)
+    task.wait(0.2)
+    fireproximityprompt(box.Fusebox.FuseboxPrompt)
+end
+
+Options.ForceBox:OnChanged(function()
+    if Options.ForceBox.Value == false then return end
+    repeat
+        if Options.BoxMode.Value == "Force On" then
+            if box.On.Transparency == 1 then
+                ToggleBox()
+            end
+        elseif Options.BoxMode.Value == "Force Off" then
+            if box.Off.Transparency == 1 then
+                ToggleBox()
+            end
+        end
+    until Options.ForceBox.Value == false
+end)
 
 Options.Doors:OnChanged(function()
     if Options.Doors.Value == true then
